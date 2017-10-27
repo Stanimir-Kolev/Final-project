@@ -26,7 +26,7 @@ var UserSchema = new Schema({
 
 UserSchema.pre('save', function (next) {
     var user = this;
-    bcrypt.hash(user.password, null, null, function (err, hash) {
+    bcrypt.hash(user.password, null, null, function (err, hash) { // kriptirane na parolata
         if (err) {
             return next(err);
         }

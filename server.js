@@ -1,17 +1,26 @@
+//packages
 var express = require('express');
 var app = express();
 var port = process.env.PORT || 8000;
 var morgan = require('morgan'); /// За рекуестите в браузъра GET POST и т.н.;
 var mongoose = require('mongoose');
-var User = require('./app/models/user'); // User model-a го извличаме и го слагаме тука по тази начин може да се прави без .js;
 var bodyParser = require('body-parser');
+var router = express.Router();// refinirenae na router
+var appRoutes = require('./app/routes/api')(router); // callvame faila ot app/routes/api.js // izpolzvai router objecta s tezri routes
+var path = require('path');
 
+
+// middleware
+app.use(morgan('dev'));
 app.use(bodyParser.json()); // за parsvane na application/json;
 app.use(bodyParser.urlencoded({ extended: true })); // за parsvane application/x-www-fore-urlencoded
-app.use(morgan('dev'));
+app.use(express.static(__dirname + '/public'));// static files ... __dirname - kuvto i da e fila /public
+app.use('/api', appRoutes);// tuka go izpolzvame
+
 // Connectva се към дата базата чрез този порт.;
 // Може да го сложим в друга папка.;
-mongoose.connect('mongodb://localhost:27017/BookShelff', function (err) {
+// mongodb connection
+mongoose.connect('mongodb://localhost:27017/BookShelf', function (err) {
     if (err) {
         console.log('Not connected to the database: ' + err);
         // може да thrownem error 
@@ -20,32 +29,13 @@ mongoose.connect('mongodb://localhost:27017/BookShelff', function (err) {
     }
 });
 
-// route for users post 
-app.post('/users', function (req, res) {
-    var user = new User();
-    user.username = req.body.username;
-    user.password = req.body.password;
-    user.email = req.body.email;
-    if (req.body.username == null || req.body.username == '' || // kriteria ako e null ili prazen string da ne go puska do sledvashtoto suboshtenie
-        req.body.password == null || req.body.password == '' ||
-        req.body.email == null || req.body.email == '') {
-        res.send('Ensure username, email, and password were provided')
-    } else {
-        user.save(function (err) {
-            if (err) {
-                res.send('Username or Email already exists!');
-            } else {
-                res.send('User Created');
-            }
-        });
+app.get('*', function (req, res) {
+    // current path i joivame s drugoto ... * - kakvoto i da klikne tam da go prati // windows
+    res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
+})
 
-    }
-});
 
-app.get('/home', function (req, res) {
-    res.send('Heloo there');
-});
-
+// server port
 app.listen(port, function () {
     console.log('Running the server on port: ' + port); // na koi port slusha 
 });
