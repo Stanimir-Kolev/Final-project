@@ -20,7 +20,7 @@ app.use('/api', appRoutes);// tuka go izpolzvame
 // Connectva се към дата базата чрез този порт.;
 // Може да го сложим в друга папка.;
 // mongodb connection
-mongoose.connect('mongodb://localhost:27017/BookShelf', function (err) {
+mongoose.connect('mongodb://ivan:ivan@ds237445.mlab.com:37445/bookshelf', function (err) {
     if (err) {
         console.log('Not connected to the database: ' + err);
         // може да thrownem error 
