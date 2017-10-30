@@ -1,3 +1,79 @@
-<div class="page-header">
-    <h1>Hello from Home</h1>
-</div>
+<main>
+    <div class="container" class="row">
+        <div class="col-lg-4">
+            <section class="col-lg-10 currentlyReadingShelf">
+                <h4>CURRENTLY READING</h4>
+                <div class="form-group">
+                    <img src="images/book_PNG2111.png" alt="books-pic" width="35%">
+                    <!--width="35%"-->
+                    <span>What are you reading?</span>
+                </div>
+                <div class="form-group">
+                    <form class="navbar-form" role="search">
+                        <div ng-controller="bookController">
+                            <div class="input-group add-on">
+                                <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text" ng-model="text">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                </div>
+                            </div>
+                            <!-- track by $index -->
+                            <div ng-repeat="book in books | filter: text" ng-show="text.length > 0" id="addd">
+                                <div class="col-lg-12">
+                                    <img ng-src="{{book.img_url}}" alt="" width="20%">
+                                    <!--width="20%"-->
+                                    <span>{{book.title}}</span>
+                                    <br>
+                                    <span>by {{book.author}}</span>
+                                </div>
+                                <br>
+                            </div>
+                            <div ng-show="(books | filter:text).length == 0">No results</div>
+                        </div>
+                    </form>
+                </div>
+                <p>Searching books</p>
+            </section>
+            <section class="col-lg-10 currentlyReadingShelf">
+                <h4>READING CHALLENGE</h4>
+                <p>Challenge yourself to read more this year!</p>
+                <div class="form-group">
+                    <img src="images/0bad60f2a1c67bc4e3c5a205694fb518.jpg" alt="books-pic" width="35%">
+                    <!--width="35%"-->
+                    <div class="gr-mediaBox">
+                        <p>I want to read</p>
+                        <input type="number" placeholder="12">
+                        <p>books in this year</p>
+                        <button type="submit" class="btn btn-default">Start challenge</button>
+                    </div>
+                </div>
+            </section>
+            <section class="col-lg-10 currentlyReadingShelf">
+                <h4>WANT TO READ</h4>
+                <div class="form-group">
+                    <a href="#"><img src="images/2016-09-03-1472910438-5073818-lovebooks-thumb.jpg" alt="books-pic" width="35%"></a>
+                </div>
+                <a href="#userBooks">View all books</a>
+            </section>
+            <section class="col-lg-10 currentlyReadingShelf">
+                <h4>BOOKSHELVES</h4>
+                <div class="userShelvesBookCounts">
+                    <a href="#">0</a>
+                    <br>
+                    <a href="#">0</a>
+                    <br>
+                    <a href="#">0</a>
+                </div>
+                <div class='userShelvesBook'>
+                    <a href="#">Read</a>
+                    <br>
+                    <a href="#">Currently Reading</a>
+                    <br>
+                    <a href="#">Want to Read</a>
+                </div>
+            </section>
+        </div>
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4"></div>
+    </div>
+</main>
