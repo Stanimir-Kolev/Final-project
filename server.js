@@ -6,9 +6,9 @@ var morgan = require('morgan'); /// За рекуестите в браузър�
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var router = express.Router();// refinirenae na router
-// var bookRoute = express.Router();
 var appRoutes = require('./app/routes/api')(router); // callvame faila ot app/routes/api.js // izpolzvai router objecta s tezri routes
-// var bookRoutes = require('./app/routes/api')(bookRoute)
+// var bookRouter = express.Router();
+// var bookRoutes = require('./app/routes/books')(bookRouter)
 var path = require('path');
 var passport = require('passport');
 var social = require('./app/passport/passport')(app, passport);
@@ -19,6 +19,7 @@ app.use(bodyParser.json()); // за parsvane na application/json;
 app.use(bodyParser.urlencoded({ extended: true })); // за parsvane application/x-www-fore-urlencoded
 app.use(express.static(__dirname + '/public'));// static files ... __dirname - kuvto i da e fila /public
 app.use('/api', appRoutes);// tuka go izpolzvame
+// app.use('/books', bookRoutes);
 
 // Connectva се към дата базата чрез този порт.;
 // Може да го сложим в друга папка.;
@@ -41,7 +42,6 @@ app.get('/books', function (req, res) {
         }
         console.log(books);
         res.json(books)
-
     });
 });
 // get book
@@ -84,7 +84,6 @@ app.delete('/books/:_id', function (req, res) {
         res.json(book)
     });
 });
-
 
 app.get('*', function (req, res) {
     // current path i joivame s drugoto ... * - kakvoto i da klikne tam da go prati // windows

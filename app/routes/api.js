@@ -3,7 +3,6 @@
 var User = require('../models/user'); // User model-a го извличаме и го слагаме тука по тази начин може да се прави без .js;
 var jwt = require('jsonwebtoken'); // Token
 var secret = 'starwars';
-var Book = require('../models/books');
 // USERS
 module.exports = function (router) {
     // User registration route
@@ -131,12 +130,6 @@ module.exports = function (router) {
     return router; // returnva go kum servera
 }
 
-// module.exports = function (bookRoute) {
-//     /// BOOKS
-//     // get books
-
-//     return bookRoute;
-// }
 
 
 

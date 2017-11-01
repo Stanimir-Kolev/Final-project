@@ -41,12 +41,6 @@ var app = angular.module('appRoutes', ['ngRoute'])
                 authenticated: false
             })
 
-            .when('/management',{
-                templateUrl:'app/views/pages/management/management.html',
-                controller: 'managementCtrl',
-                controllerAs: 'management'
-            })
-
             .otherwise({ redirectTo: '/' });
 
         $locationProvider.html5Mode({ /// za mahane na #
@@ -57,18 +51,17 @@ var app = angular.module('appRoutes', ['ngRoute'])
 
 app.run(['$rootScope', 'Auth', '$location', function ($rootScope, Auth, $location) {
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
-        // console.log(next.$$route.authenticated); //current route 
+        console.log(next.$$route.authenticated); //current route 
         if (next.$$route.authenticated == true) {
             if (!Auth.isLoggedIn()) {
                 event.preventDefault();    // kogato napishat naprimer http://localhost:8000/profile bez tova shte si otidat tam ... tova ne mu pozvolqva ako ne e lognat
                 $location.path('/login');
             }
         } else if (next.$$route.authenticated == false) {
-            if(Auth.isLoggedIn()){
+            if (Auth.isLoggedIn()) {
                 event.preventDefault();
                 $location.path('/profile'); // kogat osi lognat ne mojesh da napishesh v url-a /register --> redirectva te v /profile
             }
         }
     });
 }]);
-
