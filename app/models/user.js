@@ -66,12 +66,11 @@ var UserSchema = new Schema({
     wantToRead: { type: Array },
     currentlyReading: { type: Array },
     alreadyRead: { type: Array }
-
 });
 
-UserSchema.pre('save', function (next) {
+UserSchema.pre('save', function(next) {
     var user = this;
-    bcrypt.hash(user.password, null, null, function (err, hash) { // kriptirane na parolata
+    bcrypt.hash(user.password, null, null, function(err, hash) { // kriptirane na parolata
         if (err) {
             return next(err);
         }
@@ -85,10 +84,30 @@ UserSchema.plugin(titlize, {
     paths: ['name']
 })
 
-UserSchema.methods.comparePassword = function (password) {
+UserSchema.methods.comparePassword = function(password) {
     return bcrypt.compareSync(password, this.password)
-    // sravnqva parolata poluchena ot usera s hash-a t.e. s zapaznenata v db ot usera pri registration
+        // sravnqva parolata poluchena ot usera s hash-a t.e. s zapaznenata v db ot usera pri registration
 }
 
 
-module.exports = mongoose.model('User', UserSchema);
+var User = module.exports = mongoose.model('User', UserSchema);
+
+// get Books
+module.exports.getUsers = function(callback, limit) {
+        Users.find(callback).limit(limit);
+    }
+    // get Book
+module.exports.getUserById = function(id, callback) {
+        User.findById(id, callback);
+    }
+    // edit Book 
+module.exports.editUser = function(id, user, options, callback) {
+    var query = { _id: id };
+    var edit = {
+        favorite: user.favorite,
+        wantToRead: user.favorite,
+        currentlyReading: user.currentlyReading,
+        alreadyRead: user.alreadyRead
+    };
+    User.findOneAndUpdate(query, edit, options, callback);
+}

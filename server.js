@@ -5,7 +5,7 @@ var port = process.env.PORT || 8000;
 var morgan = require('morgan'); /// За рекуестите в браузъра GET POST и т.н.;
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var router = express.Router();// refinirenae na router
+var router = express.Router(); // refinirenae na router
 var appRoutes = require('./app/routes/api')(router); // callvame faila ot app/routes/api.js // izpolzvai router objecta s tezri routes
 // var bookRouter = express.Router();
 // var bookRoutes = require('./app/routes/books')(bookRouter)
@@ -13,19 +13,20 @@ var path = require('path');
 var passport = require('passport');
 var social = require('./app/passport/passport')(app, passport);
 var Book = require('./app/models/books');
+var Coment = require('./app/models/coment');
 // middleware
 app.use(morgan('dev'));
 app.use(bodyParser.json()); // за parsvane na application/json;
 app.use(bodyParser.urlencoded({ extended: true })); // за parsvane application/x-www-fore-urlencoded
-app.use(express.static(__dirname + '/public'));// static files ... __dirname - kuvto i da e fila /public
-app.use('/api', appRoutes);// tuka go izpolzvame
+app.use(express.static(__dirname + '/public')); // static files ... __dirname - kuvto i da e fila /public
+app.use('/api', appRoutes); // tuka go izpolzvame
 // app.use('/books', bookRoutes);
 
 // Connectva се към дата базата чрез този порт.;
 // Може да го сложим в друга папка.;
 // mongodb connection
 // mongoose.Promise = global.Promise;// nz taka pishe v neta za premahvane na promise errora?
-mongoose.connect('mongodb://ivan:ivan@ds237445.mlab.com:37445/bookshelf', function (err) {
+mongoose.connect('mongodb://ivan:ivan@ds237445.mlab.com:37445/bookshelf', function(err) {
     if (err) {
         console.log('Not connected to the database: ' + err);
         // може да thrownem error
@@ -34,19 +35,18 @@ mongoose.connect('mongodb://ivan:ivan@ds237445.mlab.com:37445/bookshelf', functi
     }
 });
 
-app.get('/books', function (req, res) {
-    console.log('dsad')
-    Book.getBooks(function (err, books) {
+// get books
+app.get('/books', function(req, res) {
+    Book.getBooks(function(err, books) {
         if (err) {
             throw err;
         }
-        console.log(books);
         res.json(books)
     });
 });
 // get book
-app.get('/books/:_id', function (req, res) {
-    Book.getBookById(req.params._id, function (err, book) {
+app.get('/books/:_id', function(req, res) {
+    Book.getBookById(req.params._id, function(err, book) {
         if (err) {
             throw err;
         }
@@ -54,9 +54,9 @@ app.get('/books/:_id', function (req, res) {
     });
 });
 // add book
-app.post('/books', function (req, res) {
+app.post('/books', function(req, res) {
     var book = req.body;
-    Book.addBook(book, function (err, book) {
+    Book.addBook(book, function(err, book) {
         if (err) {
             throw err;
         }
@@ -64,10 +64,10 @@ app.post('/books', function (req, res) {
     });
 });
 // edit book
-app.put('/books/:_id', function (req, res) {
+app.put('/books/:_id', function(req, res) {
     var id = req.params._id;
     var book = req.body;
-    Book.editBook(id, book, {}, function (err, book) {
+    Book.editBook(id, book, {}, function(err, book) {
         if (err) {
             throw err;
         }
@@ -75,9 +75,9 @@ app.put('/books/:_id', function (req, res) {
     });
 });
 // delete book
-app.delete('/books/:_id', function (req, res) {
+app.delete('/books/:_id', function(req, res) {
     var id = req.params._id;
-    Book.deleteBook(id, function (err, book) {
+    Book.deleteBook(id, function(err, book) {
         if (err) {
             throw err;
         }
@@ -85,13 +85,47 @@ app.delete('/books/:_id', function (req, res) {
     });
 });
 
-app.get('*', function (req, res) {
+
+// za comments
+// get coments
+app.get('/coments', function(req, res) {
+    Coment.getComent(function(err, coments) {
+        if (err) {
+            throw err;
+        }
+        res.json(coments)
+    });
+});
+
+// get comment
+app.get('/coments/:_id', function(req, res) {
+    Coment.getComentById(req.params._id, function(err, coments) {
+        if (err) {
+            throw err;
+        }
+        res.json(coments)
+    });
+});
+// add comments
+app.post('/coments/:_id', function(req, res) {
+    var comment = req.body;
+    Coment.addComent(comment, function(err, coment) {
+        if (err) {
+            throw err;
+        }
+        res.json(coment)
+    });
+});
+
+
+
+app.get('*', function(req, res) {
     // current path i joivame s drugoto ... * - kakvoto i da klikne tam da go prati // windows
     res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
 })
 
 
 // server port
-app.listen(port, function () {
+app.listen(port, function() {
     console.log('Running the server on port: ' + port); // na koi port slusha 
 });

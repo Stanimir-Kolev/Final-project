@@ -1,0 +1,63 @@
+<div class="container" ng-controller = 'comentController'>
+    <a href="/">Go back</a>
+    <div class="panel panel-default" ng-init="getBook()">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="{{book.img_url}}" alt="" class="thumbnail">
+                    <div>
+                        <ul class="c-rating">
+                            <li class="c-rating__item is-active" data-index="0"></li>
+                            <li class="c-rating__item is-active" data-index="1"></li>
+                            <li class="c-rating__item" data-index="2"></li>
+                            <li class="c-rating__item" data-index="3"></li>
+                            <li class="c-rating__item" data-index="4"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <ul class="list-group list-group-item">
+                        <li class="list-group-item"><strong>Title: </strong>{{book.title}}</li>
+                        <li class="list-group-item"><strong>Author: </strong>{{book.author}}</li>
+                        <li class="list-group-item"><strong>Genre: </strong>{{book.genre}}</li>
+                        <li class="list-group-item"><strong>Pages: </strong>{{book.pages}}</li>
+                        <li class="list-group-item"><strong>Published by </strong>{{book.published}}</li>
+                        <li class="list-group-item"><strong>Description: </strong>{{book.description}}</li>
+                        <li class="list-group-item">
+                            <a class="btn btn-default" href="{{book._id}}"><span class="glyphicon glyphicon-heart"></span> Favourite</a>
+                            <a class="btn btn-default" href="{{book._id}}"><span class="glyphicon glyphicon-ok-circle"></span> Read</a>
+                            <a class="btn btn-default" href="{{book._id}}"><span class="glyphicon glyphicon-retweet"></span> Still read</a>
+                            <a class="btn btn-default" href="{{book._id}}"><span class="glyphicon glyphicon-tag"></span> To read</a>
+                            <a class="btn btn-default" href="{{book.buy_url}}"><span class="glyphicon glyphicon-usd"></span> Amazon</a>
+                        </li>
+                        <li class="list-group-item" ng-init = "getComents()">
+                            <div class="titleBox">
+                                <label><strong>Comment Box</strong></label>
+                            </div>
+                            <div class="actionBox">
+                                <ul class="commentList">
+                                    <li>
+                                        <div class="commenterImage">
+                                            <img src="http://pngimg.com/uploads/cat/cat_PNG1631.png" />
+                                        </div>
+                                        <div class="commentText">
+                                            <p class="">{{coments.text}}</p> <span class="date sub-text">on March 5th, 2014</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <form class="form-inline" role="form">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" placeholder="Your comments" />
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-default">Add</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
