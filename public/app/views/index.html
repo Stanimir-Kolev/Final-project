@@ -7,17 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-
     <!-- Cascade Style Sheets -->
     <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="icon" type="image/png" size="20x20" href="images/booksPile.png">
+    <!-- <link rel="stylesheet" href="assets/css/five-stars-rating.css"> -->
 
     <!-- Angular Files -->
     <script src="assets/js/angular.js"></script>
     <script src="assets/js/angular-route.js"></script>
     <script src="assets/js/angular-animate.js"></script>
+    <!-- <script src="assets/js/five-stars-rating.js"></script> -->
 
     <!-- Angular Config/Routes -->
     <script src='app/app.js'></script>
@@ -28,6 +29,7 @@
     <script src="app/controllers/mainCtrl.js"></script>
     <script src="app/controllers/bookCtrl.js"></script>
     <script src="app/controllers/comentCtrl.js"></script>
+    <script src="app/controllers/starsCtrl.js"></script>
 
     <!-- Angular Services -->
     <script src="app/services/userServices.js"></script>
@@ -45,36 +47,60 @@
                         <div class="container-fluid">
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
                                 <a class="navbar-brand" href="/">BooksPile</a>
                             </div>
 
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                                 <ul class="nav navbar-nav">
-                                    <li><a href="/">Home</a></li>
-                                    <li><a href="/MyBooks">My Books</a></li>
+                                    <li>
+                                        <a href="/">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="/MyBooks">My Books</a>
+                                    </li>
                                     <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Browse<span class="caret"></span></a>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Browse
+                                            <span class="caret"></span>
+                                        </a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something else here</a></li>
+                                            <li>
+                                                <a href="#">Action</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Another action</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Something else here</a>
+                                            </li>
                                             <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
+                                            <li>
+                                                <a href="#">Separated link</a>
+                                            </li>
                                             <li class="divider"></li>
-                                            <li><a href="#">One more separated link</a></li>
+                                            <li>
+                                                <a href="#">One more separated link</a>
+                                            </li>
                                         </ul>
                                     </li>
                                 </ul>
                                 <ul class="nav navbar-nav navbar-right">
-                                    <li><a href="/profile" ng-show="main.isLoggedIn">Hello {{main.username}}</a></li>
-                                    <li><a ng-show="!main.isLoggedIn" href="/login">Login</a></li>
-                                    <li><a ng-show="!main.isLoggedIn" href="/register">Registration</a></li>
-                                    <li><a ng-show="main.isLoggedIn" href="#" ng-click="main.logout();">Logout</a></li>
+                                    <li>
+                                        <a href="/profile" ng-show="main.isLoggedIn">Hello {{main.username}}</a>
+                                    </li>
+                                    <li>
+                                        <a ng-show="!main.isLoggedIn" href="/login">Login</a>
+                                    </li>
+                                    <li>
+                                        <a ng-show="!main.isLoggedIn" href="/register">Registration</a>
+                                    </li>
+                                    <li>
+                                        <a ng-show="main.isLoggedIn" href="#" ng-click="main.logout();">Logout</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -97,23 +123,40 @@
                 <div class="col-sm-2">
                     <h6>Navigation</h6>
                     <ul class="list-unstyled">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Links</a></li>
-                        <li><a href="#">Contacts</a></li>
+                        <li>
+                            <a href="#">Home</a>
+                        </li>
+                        <li>
+                            <a href="#">Services</a>
+                        </li>
+                        <li>
+                            <a href="#">Links</a>
+                        </li>
+                        <li>
+                            <a href="#">Contacts</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-sm-2">
                     <h6>Follow Us</h6>
                     <ul class="list-unstyled">
-                        <li><a href="https://www.facebook.com/Goodreads/">Facebook</a></li>
-                        <li><a href="https://twitter.com/goodreads?lang=bg">Twitter</a></li>
-                        <li><a href="https://plus.google.com/+Goodreads">Google Plus</a></li>
-                        <li><a href="https://www.instagram.com/goodreads/">Instagram</a></li>
+                        <li>
+                            <a href="https://www.facebook.com/Goodreads/">Facebook</a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/goodreads?lang=bg">Twitter</a>
+                        </li>
+                        <li>
+                            <a href="https://plus.google.com/+Goodreads">Google Plus</a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/goodreads/">Instagram</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-sm-2">
-                    <h6>Coded with <span class="glyphicon glyphicon-heart"></span>by Ivan i Stanimir</h6>
+                    <h6>Coded with
+                        <span class="glyphicon glyphicon-heart"></span>by Ivan i Stanimir</h6>
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ app.controller("comentController", ["$scope", "$http", "$location", "$routeParam
         var id = $routeParams.id;
         $http.get("/coments/"+id).then(function(response) {
             $scope.coments = response.data;
-            console.log($scope.coments.filter(x=>x.bookId == id))
+            // console.log($scope.coments.filter(x=>x.bookId == id))
         })
     }
     $scope.getComent = function() {

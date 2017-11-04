@@ -21,7 +21,7 @@
                                     <div class="col-lg-10">
                                         <input type="text" class="form-control" name="name" id="inputName" placeholder="Name" ng-model="register.regData.name" ng-pattern="/^(([a-zA-Z]{3,20})+[ ]+([a-zA-Z]{3,20})+)+$/"
                                             ng-minlength="3" ng-maxlength="20" required>
-                                        <p class="help-block" ng-show="(!regForm.name.$pristine && regForm.$error.required) ||(regForm.$submitted &&
+                                        <p class="help-block" ng-show="(!regForm.name.$pristine && regForm.name.$error.required) ||(regForm.$submitted &&
                                     regForm.name.$error.required) ">This field is required</p>
                                         <ul ng-show="(!regForm.name.$pristine && regForm.name.$error.pattern)||(!regForm.name.$pristine && regForm.name.$error.minlength)||
                                     (!regForm.name.$pristine && regForm.name.$error.maxlength)" class="help-block">
