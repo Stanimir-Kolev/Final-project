@@ -86,7 +86,7 @@ app.delete('/books/:_id', function(req, res) {
 });
 
 
-// za comments
+// za comments ///////
 // get coments
 app.get('/coments', function(req, res) {
     Coment.getComent(function(err, coments) {
@@ -110,6 +110,27 @@ app.get('/coments/:_id', function(req, res) {
 app.post('/coments', function(req, res) {
     var coment = req.body;
     Coment.addComent(coment, function(err, coment) {
+        if (err) {
+            throw err;
+        }
+        res.json(coment)
+    });
+});
+// edit coment 
+app.put('/coments/:_id', function(req, res) {
+    var id = req.params._id;
+    var coment = req.body;
+    Coment.editComent(id, coment, {}, function(err, coment) {
+        if (err) {
+            throw err;
+        }
+        res.json(coment)
+    });
+});
+// delete coment
+app.delete('/coments/:_id', function(req, res) {
+    var id = req.params._id;
+    Coment.deleteComent(id, function(err, coment) {
         if (err) {
             throw err;
         }

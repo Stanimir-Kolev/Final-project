@@ -4,7 +4,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
             .when('/', {
                 templateUrl: 'app/views/pages/home.html',
                 controller: 'bookController'
-                //  authenticated: true
+                    //  authenticated: true
             })
             .when('/search', {
                 templateUrl: 'app/views/pages/fullSearch.htm',
@@ -18,6 +18,14 @@ var app = angular.module('appRoutes', ['ngRoute'])
             .when('/MyBooks', {
                 templateUrl: 'app/views/pages/MyBooks.html',
                 authenticated: true
+            })
+            .when('/MyBooks/add', {
+                templateUrl: 'app/views/pages/add_book.htm',
+                controller: 'bookController'
+            })
+            .when('/MyBooks/show_comments', {
+                templateUrl: 'app/views/pages/show_user_comments.htm',
+                controller: 'comentController'
             })
             .when('/register', {
                 templateUrl: 'app/views/pages/users/register.html',

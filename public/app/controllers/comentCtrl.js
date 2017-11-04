@@ -1,27 +1,25 @@
 var app = angular.module("detailsController", ['authServices']);
 app.controller("comentController", ["Auth", "$scope", "$http", "$location", "$routeParams", function(Auth, $scope, $http, $location, $routeParams) {
-
+    //show all coments
     $scope.getComents = function() {
-            $http.get("/coments").then(function(response) {
-                var currentBookId = $routeParams.id;
-                $scope.coments = response.data.filter(x => x.bookId == currentBookId);
+        $http.get("/coments").then(function(response) {
+            var currentBookId = $routeParams.id;
+            $scope.coments = response.data.filter(x => x.bookId == currentBookId);
 
-                // za like-ovete
-                $scope.addLikesForComent = function() {
+            Auth.getUser().then(function(response) {
+                var userObject = response.data;
+                $scope.comentsFromUser
+            })
+        })
+    }
 
-                    $(function() {
-                        $scope.getLike = function() {
-                            var input = $(this).siblings('.qty1');
-                            input.val(parseFloat(input.val()) + 1);
-                            console.log($scope.rating)
-                        };
-
-                        $scope.getDislike = function() {
-                            var input = $(this).siblings('.qty2');
-                            input.val(parseFloat(input.val()) - 1);
-                        };
-                    });
-                }
+    //show current User All comments
+    $scope.getComentFromCurrentUser = function() {
+            Auth.getUser().then(function(response) {
+                var currentUserObject = response.data;
+                $http.get("/coments").then(function(response) {
+                    $scope.coments = response.data.filter(x => x.author.id == currentUserObject.id)
+                })
             })
         }
         // $scope.getComent = function() {
@@ -47,13 +45,33 @@ app.controller("comentController", ["Auth", "$scope", "$http", "$location", "$ro
                 }
                 if (validString(text))
                     this.text = text;
-                this.date = (new Date()).toLocaleString();
+
+                this.date = new Date().toLocaleString("en-GB");
                 this.rating = null
             }
             $scope.coment = new Coment(userObject, currentBookId, textFromInput);
             $http.post("/coments", $scope.coment).then(function(response) {
                 $scope.getComents();
             })
+        })
+        setTimeout(function() {
+            textFromInput = document.querySelector("#comentar").value = "";
+        }, 1000);
+    }
+    $scope.deleteComent = function(id) {
+            $http.delete("/coments/" + id).then(function(response) {
+                $scope.getComentFromCurrentUser();
+            })
+        }
+        // za like-ovete
+    $scope.editComent = function(id) {
+        $http.get("/coments/" + id).then(function(response) {
+            $scope.coment = response.data;
+            $scope.coment.likes = $scope.coment.likes+1;
+            console.log($scope.coment.likes)
+                // $http.put("/coments/" + id, $scope.coment.likes).then(function(response) {
+                //     $scope.getComents();
+                // })
         })
     }
 }]);

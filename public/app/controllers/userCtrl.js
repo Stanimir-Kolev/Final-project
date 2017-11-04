@@ -108,11 +108,18 @@ angular.module('userControllers', ['userServices'])
     // functionalnost za dostupvane na favourites masivite s knigi
     .controller('usrController', ["$scope", "$http", "$location", "$routeParams", function($scope, $http, $location, $routeParams) {
         // $scope.getUsers = function() {
-        $http.get("/users").then(function(response) {
+        $http.get("/api/users").then(function(response) {
                 $scope.users = response.data;
                 console.log("aaaaa")
             })
             // }
+            // get one user
+        $scope.getBook = function() {
+                var id = $routeParams.id;
+                $http.get("/api/users/" + id).then(function(response) {
+                    $scope.user = response.data;
+                })
+            }
             // $scope.getFavBooks = function() {
             //         $http.get("/userss/" + id).then(function(response) {
             //             $scope.user = response.data;

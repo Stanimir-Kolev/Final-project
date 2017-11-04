@@ -1,5 +1,5 @@
 <div class="container" ng-controller='comentController'>
-    <a href="/">Go back</a>
+    <a href="/details">Go back</a>
     <div class="panel panel-default" ng-init="getBook()">
         <div class="panel-body">
             <div class="row">
@@ -24,10 +24,10 @@
                         <li class="list-group-item"><strong>Published by </strong>{{book.published}}</li>
                         <li class="list-group-item"><strong>Description: </strong>{{book.description}}</li>
                         <li class="list-group-item">
-                            <a class="btn btn-default" href="{{book._id}}"><span class="glyphicon glyphicon-heart"></span> Favourite</a>
-                            <a class="btn btn-default" href="{{book._id}}"><span class="glyphicon glyphicon-ok-circle"></span> Read</a>
-                            <a class="btn btn-default" href="{{book._id}}"><span class="glyphicon glyphicon-retweet"></span> Still read</a>
-                            <a class="btn btn-default" href="{{book._id}}"><span class="glyphicon glyphicon-tag"></span> To read</a>
+                            <button class="btn btn-default"><span class="glyphicon glyphicon-heart"></span> Favourite</button>
+                            <button class="btn btn-default"><span class="glyphicon glyphicon-ok-circle"></span> Read</button>
+                            <button class="btn btn-default"><span class="glyphicon glyphicon-retweet"></span> Still read</button>
+                            <button class="btn btn-default"><span class="glyphicon glyphicon-tag"></span> To read</button>
                             <a class="btn btn-default" href="{{book.buy_url}}"><span class="glyphicon glyphicon-usd"></span> Amazon</a>
                         </li>
                         <li class="list-group-item" ng-init="getComents()">
@@ -43,19 +43,8 @@
                                         <div class="commentText">
                                             <p><strong>{{coment.author.username}}</strong></p>
                                             <p class="">{{coment.text}}</p> <span class="date sub-text">on {{coment.date}}</span>
+                                            <span class="btn btn-default glyphicon glyphicon-hand-up" ng-click="editComent(coment._id)">{{coment.likes}}</span>
                                         </div>
-
-                                        <div class="container" ng-submit="addLikesForComent()">
-                                            <a class="like" ng-model="coment._id" ng-click="getLike()">
-                                                <a class="btn btn-default glyphicon glyphicon-hand-up" ng-click=""></a>
-                                                <input class="qty1" name="qty1" readonly="readonly" type="text" value="0" ng-model="rating.likes" />
-                                            </a>
-                                            <a class="dislike" ng-model="coment._id" ng-click="getDisLike()">
-                                                <a class="btn btn-default glyphicon glyphicon-hand-down"></a>
-                                                <input class="qty2" name="qty2" readonly="readonly" type="text" value="0" ng-model="rating.dislikes" />
-                                            </a>
-                                        </div>
-
                                     </li>
                                 </ul>
                                 <form class="form-inline" role="form">
