@@ -1,6 +1,6 @@
 angular.module('mainController', ['authServices'])
 
-    .controller('mainCtrl', function (Auth, $location, $timeout, $rootScope, $window, $interval) {
+    .controller('mainCtrl', function (Auth, $location, $timeout, $rootScope, $window, $interval, $http) {
         var self = this;
 
         self.loadme = false;
@@ -8,16 +8,13 @@ angular.module('mainController', ['authServices'])
         //vseki put kato ima razlichno view ... shte se izvika slednata funktciq
         $rootScope.$on('$routeChangeStart', function () {
 
-
             if (Auth.isLoggedIn()) {
                 self.isLoggedIn = true;
                 Auth.getUser().then(function (data) {
                     self.username = data.data.username;
                     self.useremail = data.data.email;
-                    self.loadme = true;
                     self.id = data.data.id;
-                    // console.log(self)
-                    // console.log(data)
+                    self.loadme = true;
                 })
             } else {
                 self.isLoggedIn = false;
@@ -32,7 +29,6 @@ angular.module('mainController', ['authServices'])
             // console.log($window.location.protocol); // http:
             $window.location = $window.location.protocol + '//' + $window.location.host + '/auth/facebook';
         }
-
 
 
         this.doLogin = function (loginData) {
@@ -73,5 +69,5 @@ angular.module('mainController', ['authServices'])
     //     },
     //     data: { test: 'test' }
     //    }
-       
+
     //    $http(req).then(function(){...}, function(){...});

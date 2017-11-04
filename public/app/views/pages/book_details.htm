@@ -5,10 +5,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <img src="{{book.img_url}}" alt="" class="thumbnail">
-                    <div id="stars" ng-controller="StarCtrl">
-                        <span ng-repeat="rating in ratings">
-                          Raiting  <div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)"></div>
-                        </span>
+                    <div ng-controller="StarCtrl"><button ng-click="setRating()">haha</button>
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -45,22 +42,38 @@
                             </div>
                             <div class="actionBox">
                                 <ul class="commentList">
-                                    <li>
+                                    <li ng-repeat="coment in coments | filter">
                                         <div class="commenterImage">
-                                            <img src="http://pngimg.com/uploads/cat/cat_PNG1631.png" />
+                                            <img ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Circle-icons-profle.svg/120px-Circle-icons-profle.svg.png"
+                                            />
                                         </div>
                                         <div class="commentText">
-                                            <p class="">{{coments.text}}</p>
-                                            <span class="date sub-text">on March 5th, 2014</span>
+                                            <p>
+                                                <strong>{{coment.author.username}}</strong>
+                                            </p>
+                                            <p class="">{{coment.text}}</p>
+                                            <span class="date sub-text">on {{coment.date}}</span>
                                         </div>
+
+                                        <div class="container" ng-submit="addLikesForComent()">
+                                            <a class="like" ng-model="coment._id" ng-click="getLike()">
+                                                <a class="btn btn-default glyphicon glyphicon-hand-up" ng-click=""></a>
+                                                <input class="qty1" name="qty1" readonly="readonly" type="text" value="0" ng-model="rating.likes" />
+                                            </a>
+                                            <a class="dislike" ng-model="coment._id" ng-click="getDisLike()">
+                                                <a class="btn btn-default glyphicon glyphicon-hand-down"></a>
+                                                <input class="qty2" name="qty2" readonly="readonly" type="text" value="0" ng-model="rating.dislikes" />
+                                            </a>
+                                        </div>
+
                                     </li>
                                 </ul>
                                 <form class="form-inline" role="form">
                                     <div class="form-group">
-                                        <input class="form-control" type="text" placeholder="Your comments" />
+                                        <input class="form-control" type="text" placeholder="Your comments" id="comentar" />
                                     </div>
                                     <div class="form-group">
-                                        <button class="btn btn-default">Add</button>
+                                        <button class="btn btn-default" ng-click="addComent()">Add</button>
                                     </div>
                                 </form>
                             </div>

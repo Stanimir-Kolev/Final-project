@@ -2,11 +2,11 @@ var mongoose = require('mongoose');
 
 // Schema for coment
 var comentSchema = mongoose.Schema({
-    authorId: { type: String },
+    author: { type: Object },
     bookId: { type: String },
     text: { type: String },
-    create_date: { type: Date, default: Date.now },
-    rating: { type: Number }
+    date: { type: Date, default: Date.now },
+    rating: { type: Object }
 });
 var Coment = module.exports = mongoose.model('Coment', comentSchema);
 // get Books

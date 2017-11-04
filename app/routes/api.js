@@ -4,9 +4,9 @@ var User = require('../models/user'); // User model-a го извличаме и
 var jwt = require('jsonwebtoken'); // Token
 var secret = 'starwars';
 // USERS
-module.exports = function(router) {
+module.exports = function (router) {
     // User registration route
-    router.post('/users', function(req, res) {
+    router.post('/users', function (req, res) {
         var user = new User();
         user.username = req.body.username;
         user.password = req.body.password;
@@ -16,9 +16,9 @@ module.exports = function(router) {
             req.body.password == null || req.body.password == '' ||
             req.body.email == null || req.body.email == '' ||
             req.body.name == null || req.body.name == '') {
-            res.json({ success: false, message: 'Ensure username, email, and password were provided' })
+            res.json({ success: false, message: 'Ensure username, email, and password were provided' });
         } else {
-            user.save(function(err) {
+            user.save(function (err) {
                 if (err) {
                     if (err.errors != null) {
                         if (err.errors.name) {
@@ -51,8 +51,8 @@ module.exports = function(router) {
     });
 
 
-    router.post('/checkusername', function(req, res) {
-        User.findOne({ username: req.body.username }).select('username').exec(function(err, user) {
+    router.post('/checkusername', function (req, res) {
+        User.findOne({ username: req.body.username }).select('username').exec(function (err, user) {
             if (err) {
                 throw err;
             }
@@ -64,8 +64,8 @@ module.exports = function(router) {
         });
     });
 
-    router.post('/checkemail', function(req, res) {
-        User.findOne({ email: req.body.email }).select('username').exec(function(err, user) {
+    router.post('/checkemail', function (req, res) {
+        User.findOne({ email: req.body.email }).select('username').exec(function (err, user) {
             if (err) {
                 throw err;
             }
@@ -80,8 +80,8 @@ module.exports = function(router) {
     // User login route
     //http://localhost:port/api/authenticate
     //vsichko koeto se iziskva usera da ne e lognat se slaga sled tova
-    router.post('/authenticate', function(req, res) {
-        User.findOne({ username: req.body.username }).select('email username password id favorite').exec(function(err, user) {
+    router.post('/authenticate', function (req, res) {
+        User.findOne({ username: req.body.username }).select('email username password id favorite').exec(function (err, user) {
             if (err) {
                 throw err;
             }
@@ -98,20 +98,20 @@ module.exports = function(router) {
                     res.json({ success: false, message: 'Cound not authenticate password' });
                 } else {
                     var token = jwt.sign({ username: user.username, email: user.email, id: user.id, favorite: user.favorite }, secret, { expiresIn: '24h' });
-                    res.json({ success: true, message: 'User authenticated!', token: token })
+                    res.json({ success: true, message: 'User authenticated!', token: token });
                 }
             }
         });
     });
     //create // middleware za decreptirane na tokena
     // vischko koeto se izisvka usera da e lognat se slaga pod tova
-    router.use(function(req, res, next) {
+    router.use(function (req, res, next) {
         // ili ot requesta ili ot URL-a ili ot headerite
         var token = req.body.token || req.body.query || req.headers['x-access-token'];
 
         if (token) {
             //verify token
-            jwt.verify(token, secret, function(err, decoded) {
+            jwt.verify(token, secret, function (err, decoded) {
                 if (err) {
                     res.json({ success: false, message: 'Token invalid' })
                 } else {
@@ -122,7 +122,7 @@ module.exports = function(router) {
         } else {
             res.json({ success: false, message: 'No token provided' });
         }
-    })
+    });
 
     // functionalnost za zaqvki kum user-a get post put delete books
     // get users
@@ -135,8 +135,8 @@ module.exports = function(router) {
         });
     });
     // get user
-    router.get('api/users/:_id', function(req, res) {
-        User.getUserById(req.params._id, function(err, user) {
+    router.get('api/users/:_id', function (req, res) {
+        User.getUserById(req.params._id, function (err, user) {
             if (err) {
                 throw err;
             }
@@ -144,7 +144,7 @@ module.exports = function(router) {
         });
     });
 
-    router.post('/currentUser', function(req, res) {
+    router.post('/currentUser', function (req, res) {
         res.send(req.decoded);
     });
     return router; // returnva go kum servera
