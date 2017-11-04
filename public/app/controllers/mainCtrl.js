@@ -15,8 +15,6 @@ angular.module('mainController', ['authServices'])
                 self.username = data.data.username;
                 self.useremail = data.data.email;
                 self.loadme = true;
-                // console.log(self)
-                // console.log(data)
             })
         } else {
             self.isLoggedIn = false;
@@ -61,5 +59,4 @@ angular.module('mainController', ['authServices'])
             $location.path('/');
         }, 2000)
     };
-
 });

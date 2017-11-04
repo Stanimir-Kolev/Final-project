@@ -97,7 +97,7 @@ app.get('/coments', function(req, res) {
     });
 });
 
-// get comment
+// get comment po kniga
 app.get('/coments/:_id', function(req, res) {
     Coment.getComentById(req.params._id, function(err, coments) {
         if (err) {
@@ -107,9 +107,9 @@ app.get('/coments/:_id', function(req, res) {
     });
 });
 // add comments
-app.post('/coments/:_id', function(req, res) {
-    var comment = req.body;
-    Coment.addComent(comment, function(err, coment) {
+app.post('/coments', function(req, res) {
+    var coment = req.body;
+    Coment.addComent(coment, function(err, coment) {
         if (err) {
             throw err;
         }

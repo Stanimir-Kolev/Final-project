@@ -4,7 +4,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
             .when('/', {
                 templateUrl: 'app/views/pages/home.html',
                 controller: 'bookController'
-                    // authenticated: true
+                //  authenticated: true
             })
             .when('/search', {
                 templateUrl: 'app/views/pages/fullSearch.htm',
@@ -51,7 +51,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
                 authenticated: false
             })
 
-        // .otherwise({ redirectTo: '/' });
+        .otherwise({ redirectTo: '/' });
 
         $locationProvider.html5Mode({ /// za mahane na #
             enabled: true,

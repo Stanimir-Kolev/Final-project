@@ -10,8 +10,6 @@ app.controller("bookController", ["$scope", "$http", "$location", "$routeParams"
         var id = $routeParams.id;
         $http.get("/books/" + id).then(function(response) {
             $scope.book = response.data;
-
-            console.log(response.data.comments)
         })
     }
     $scope.editBook = function() {
