@@ -22,12 +22,16 @@ module.exports.addComent = function(coment, callback) {
         Coment.create(coment, callback);
     }
     // edit Coment
-module.exports.editComent = function(id, num, options, callback) {
+module.exports.editComent = function(id, coment, options, callback) {
         var query = { _id: id };
         var edit = {
-            likes: num
+            author: coment.author,
+            bookId: coment.bookId,
+            text: coment.text,
+            date: coment.date,
+            likes: coment.likes
         };
-        Book.findOneAndUpdate(query, edit, options, callback);
+        Coment.findOneAndUpdate(query, edit, options, callback);
     }
     // delete Coment 
 module.exports.deleteComent = function(id, callback) {

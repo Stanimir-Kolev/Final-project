@@ -65,13 +65,13 @@ app.controller("comentController", ["Auth", "$scope", "$http", "$location", "$ro
         }
         // za like-ovete
     $scope.editComent = function(id) {
+        // proverka dali e minala uspeshno zaqvkata ako da da ne pravi poveche put zaqvki
         $http.get("/coments/" + id).then(function(response) {
             $scope.coment = response.data;
-            $scope.coment.likes = $scope.coment.likes+1;
-            console.log($scope.coment.likes)
-                // $http.put("/coments/" + id, $scope.coment.likes).then(function(response) {
-                //     $scope.getComents();
-                // })
+            $scope.coment.likes++;
+            $http.put("/coments/" + id, $scope.coment).then(function(response) {
+                $scope.getComents();
+            })
         })
     }
 }]);

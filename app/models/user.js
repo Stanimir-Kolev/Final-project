@@ -61,11 +61,7 @@ var UserSchema = new Schema({
     name: { type: String, required: true, validate: nameValidator },
     username: { type: String, lowercase: true, required: true, unique: true, validate: usernameValidator },
     password: { type: String, required: true, validate: passwordValidator },
-    email: { type: String, required: true, lowercase: true, unique: true, validate: emailValidator },
-    favorite: { type: Array },
-    wantToRead: { type: Array },
-    currentlyReading: { type: Array },
-    alreadyRead: { type: Array }
+    email: { type: String, required: true, lowercase: true, unique: true, validate: emailValidator }
 });
 
 UserSchema.pre('save', function(next) {
@@ -104,10 +100,10 @@ module.exports.getUserById = function(id, callback) {
 module.exports.editUser = function(id, user, options, callback) {
     var query = { _id: id };
     var edit = {
-        favorite: user.favorite,
-        wantToRead: user.favorite,
-        currentlyReading: user.currentlyReading,
-        alreadyRead: user.alreadyRead
+        name: user.name,
+        username: user.username,
+        password: user.password,
+        email: user.email
     };
     User.findOneAndUpdate(query, edit, options, callback);
 }

@@ -27,6 +27,10 @@ var app = angular.module('appRoutes', ['ngRoute'])
                 templateUrl: 'app/views/pages/show_user_comments.htm',
                 controller: 'comentController'
             })
+            .when('/MyBooks/favourites', {
+                templateUrl: 'app/views/pages/show_favBooks.htm',
+                controller: 'favBookController'
+            })
             .when('/register', {
                 templateUrl: 'app/views/pages/users/register.html',
                 controller: 'regCtrl',
@@ -42,7 +46,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
                 authenticated: false
             })
 
-        .when('/profile', {
+            .when('/profile', {
                 templateUrl: 'app/views/pages/users/profile.html',
                 authenticated: true,
             })

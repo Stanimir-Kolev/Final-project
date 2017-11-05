@@ -1,5 +1,5 @@
 <div class="container" ng-controller='comentController'>
-    <a href="/details">Go back</a>
+    <a href="/details"><span class="glyphicon glyphicon-circle-arrow-left	Try it"></span>Go back</a>
     <div class="panel panel-default" ng-init="getBook()">
         <div class="panel-body">
             <div class="row">
@@ -23,11 +23,11 @@
                         <li class="list-group-item"><strong>Pages: </strong>{{book.pages}}</li>
                         <li class="list-group-item"><strong>Published by </strong>{{book.published}}</li>
                         <li class="list-group-item"><strong>Description: </strong>{{book.description}}</li>
-                        <li class="list-group-item">
-                            <button class="btn btn-default"><span class="glyphicon glyphicon-heart"></span> Favourite</button>
-                            <button class="btn btn-default"><span class="glyphicon glyphicon-ok-circle"></span> Read</button>
-                            <button class="btn btn-default"><span class="glyphicon glyphicon-retweet"></span> Still read</button>
-                            <button class="btn btn-default"><span class="glyphicon glyphicon-tag"></span> To read</button>
+                        <li class="list-group-item" ng-controller='favBookController'>
+                            <button class="btn btn-default" ng-click="addFavBook()"><span class="glyphicon glyphicon-heart"></span> Favourite</button>
+                            <button class="btn btn-default" ng-click=""><span class="glyphicon glyphicon-ok-circle"></span> Read</button>
+                            <button class="btn btn-default" ng-click=""><span class="glyphicon glyphicon-retweet"></span> Still read</button>
+                            <button class="btn btn-default" ng-click=""><span class="glyphicon glyphicon-tag"></span> To read</button>
                             <a class="btn btn-default" href="{{book.buy_url}}"><span class="glyphicon glyphicon-usd"></span> Amazon</a>
                         </li>
                         <li class="list-group-item" ng-init="getComents()">

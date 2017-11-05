@@ -13,6 +13,7 @@ var path = require('path');
 var passport = require('passport');
 var social = require('./app/passport/passport')(app, passport);
 var Book = require('./app/models/books');
+var favourite_Book = require('./app/models/favourites_books');
 var Coment = require('./app/models/coment');
 // middleware
 app.use(morgan('dev'));
@@ -87,6 +88,7 @@ app.delete('/books/:_id', function(req, res) {
 
 
 // za comments ///////
+
 // get coments
 app.get('/coments', function(req, res) {
     Coment.getComent(function(err, coments) {
@@ -135,6 +137,48 @@ app.delete('/coments/:_id', function(req, res) {
             throw err;
         }
         res.json(coment)
+    });
+});
+
+
+// favourites_Books //////////////////////////////
+
+// get favbooks
+app.get('/favbooks', function(req, res) {
+    favourite_Book.getFavBooks(function(err, favouriteBooks) {
+        if (err) {
+            throw err;
+        }
+        res.json(favouriteBooks)
+    });
+});
+// get favbooks currentUser id
+app.get('/favbooks/:_id', function(req, res) {
+    favourite_Book.getFavBookById(req.params._id, function(err, favouriteBook) {
+        if (err) {
+            throw err;
+        }
+        res.json(favouriteBook)
+    });
+});
+// add favbooks
+app.post('/favbooks', function(req, res) {
+    var book = req.body;
+    favourite_Book.addFavBook(book, function(err, favouriteBook) {
+        if (err) {
+            throw err;
+        }
+        res.json(favouriteBook)
+    });
+});
+// delete favbooks
+app.delete('/favbooks/:_id', function(req, res) {
+    var id = req.params._id;
+    favourite_Book.deleteFavBook(id, function(err, favouriteBook) {
+        if (err) {
+            throw err;
+        }
+        res.json(favouriteBook)
     });
 });
 
