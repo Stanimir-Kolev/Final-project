@@ -1,4 +1,4 @@
-var app = angular.module("collectionBookController", []);
+var app = angular.module("favCollectionBook", []);
 app.controller("favBookController", ["Auth", "$scope", "$http", "$location", "$routeParams", function(Auth, $scope, $http, $location, $routeParams) {
     // show favbooks collection api
     $scope.getFavBooks = function() {
@@ -17,23 +17,21 @@ app.controller("favBookController", ["Auth", "$scope", "$http", "$location", "$r
         }
         // add favBook from current user in fav collection 
     $scope.addFavBook = function() {
-        // trqbva da peoproverq dali q ima vuv data bazata
         Auth.getUser().then(function(response) {
             var currentUserObject = response.data;
             var id = $routeParams.id;
-
             $http.get("/books/" + id).then(function(response) {
                 var currentBookObject = response.data;
-                var newFavBook = {
-                    author: currentUserObject,
-                    book: currentBookObject,
-                    date: new Date().toLocaleString()
-                }
                 $http.get("/favbooks").then(function(response) {
-                    var sameFavBook = response.data.some(x => x.book.id == currentBookObject.id)
-                    if (sameFavBook) {
+                    var someFavBook = response.data.some(x => (x.book._id == id) && (x.author.id == currentUserObject.id))
+                    if (someFavBook) {
                         throw new Error("knigata q ima");
                     } else {
+                        var newFavBook = {
+                            author: currentUserObject,
+                            book: currentBookObject,
+                            date: new Date().toLocaleString()
+                        }
                         $http.post("/favbooks", newFavBook).then(function(response) {})
                     }
                 })

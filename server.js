@@ -14,6 +14,9 @@ var passport = require('passport');
 var social = require('./app/passport/passport')(app, passport);
 var Book = require('./app/models/books');
 var favourite_Book = require('./app/models/favourites_books');
+var read_Book = require('./app/models/read_books');
+var still_read_Book = require('./app/models/still_read_books');
+var to_read_Book = require('./app/models/to_read_books');
 var Coment = require('./app/models/coment');
 // middleware
 app.use(morgan('dev'));
@@ -181,6 +184,135 @@ app.delete('/favbooks/:_id', function(req, res) {
         res.json(favouriteBook)
     });
 });
+
+// read_Books //////////////////////////////
+
+// get readbooks
+app.get('/readbooks', function(req, res) {
+    read_Book.getReadBooks(function(err, readBooks) {
+        if (err) {
+            throw err;
+        }
+        res.json(readBooks)
+    });
+});
+// get readbooks currentUser id
+app.get('/readbooks/:_id', function(req, res) {
+    read_Book.getReadBookById(req.params._id, function(err, readBooks) {
+        if (err) {
+            throw err;
+        }
+        res.json(readBooks)
+    });
+});
+// add readbooks
+app.post('/readbooks', function(req, res) {
+    var book = req.body;
+    read_Book.addReadBook(book, function(err, readBooks) {
+        if (err) {
+            throw err;
+        }
+        res.json(readBooks)
+    });
+});
+// delete readbooks
+app.delete('/readbooks/:_id', function(req, res) {
+    var id = req.params._id;
+    read_Book.deleteReadBook(id, function(err, readBooks) {
+        if (err) {
+            throw err;
+        }
+        res.json(readBooks)
+    });
+});
+
+
+
+// still_read_Books //////////////////////////////
+
+// get stillreadbooks
+app.get('/stillreadbooks', function(req, res) {
+    still_read_Book.getStillReadBooks(function(err, stillreadBooks) {
+        if (err) {
+            throw err;
+        }
+        res.json(stillreadBooks)
+    });
+});
+// get stillreadbooks currentUser id
+app.get('/stillreadbooks/:_id', function(req, res) {
+    still_read_Book.getStillReadBookById(req.params._id, function(err, stillreadBooks) {
+        if (err) {
+            throw err;
+        }
+        res.json(stillreadBooks)
+    });
+});
+// add stillreadbooks
+app.post('/stillreadbooks', function(req, res) {
+    var book = req.body;
+    still_read_Book.addStillReadBook(book, function(err, stillreadBooks) {
+        if (err) {
+            throw err;
+        }
+        res.json(stillreadBooks)
+    });
+});
+// delete stillreadbooks
+app.delete('/stillreadbooks/:_id', function(req, res) {
+    var id = req.params._id;
+    still_read_Book.deleteStillReadBook(id, function(err, stillreadBooks) {
+        if (err) {
+            throw err;
+        }
+        res.json(stillreadBooks)
+    });
+});
+
+
+
+// to_read_Books //////////////////////////////
+
+// get toreadbooks
+app.get('/toreadbooks', function(req, res) {
+    to_read_Book.getToReadBooks(function(err, toreadBooks) {
+        if (err) {
+            throw err;
+        }
+        res.json(toreadBooks)
+    });
+});
+// get toreadbooks currentUser id
+app.get('/toreadbooks/:_id', function(req, res) {
+    to_read_Book.getToReadBookById(req.params._id, function(err, toreadBooks) {
+        if (err) {
+            throw err;
+        }
+        res.json(toreadBooks)
+    });
+});
+// add toreadbooks
+app.post('/toreadbooks', function(req, res) {
+    var book = req.body;
+    to_read_Book.addToReadBook(book, function(err, toreadBooks) {
+        if (err) {
+            throw err;
+        }
+        res.json(toreadBooks)
+    });
+});
+// delete toreadbooks
+app.delete('/toreadbooks/:_id', function(req, res) {
+    var id = req.params._id;
+    to_read_Book.deleteToReadBook(id, function(err, toreadBooks) {
+        if (err) {
+            throw err;
+        }
+        res.json(toreadBooks)
+    });
+});
+
+
 
 
 
