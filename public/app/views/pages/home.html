@@ -1,84 +1,90 @@
-<div class="container row" ng-init="getBooks()">
-    <div class="col-lg-4">
-        <section class="col-lg-10 currentlyReadingShelf">
-            <h4>CURRENTLY READING</h4>
-            <div class="form-group">
-                <div class="col-md-6">
-                    <img src="images/book_PNG2111.png" alt="books-pic">
-                </div>
-                <span>What are you reading?</span>
-            </div>
-            <div class="form-group">
-                <form class="navbar-form" role="search">
-
-                    <div class="input-group add-on">
-                        <input class="form-control" placeholder="Title / Author / Genre" name="srch-term" id="srch-term" type="text" ng-model="text">
-                        <div class="input-group-btn">
-                            <a href="/search" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></a>
-                        </div>
-                    </div>
-                    <!-- track by $index -->
-                </form>
-            </div>
-            <p>Searching books</p>
-        </section>
-        <section class="col-lg-10 currentlyReadingShelf">
-            <h4>READING CHALLENGE</h4>
-            <p>Challenge yourself to read more this year!</p>
-            <div class="form-group">
-                <div class="col-md-4">
-                    <img src="images/0bad60f2a1c67bc4e3c5a205694fb518.jpg" alt="books-pic">
-                </div>
-                <div class="gr-mediaBox">
-                    <p>I want to read</p>
-                    <input type="number" placeholder="12">
-                    <p>books in this year</p>
-                    <button type="submit" class="btn btn-default">Start challenge</button>
-                </div>
-            </div>
-        </section>
-        <section class="col-lg-10 currentlyReadingShelf">
-            <h4>WANT TO READ</h4>
-            <div class="form-group">
-                <a href="#">
+<div class="container" ng-init="getBooks()">
+    <div class="row">
+        <div class="col-lg-4">
+            <section class="homeLeftSide">
+                <h4>CURRENTLY READING</h4>
+                <div class="form-group">
                     <div class="col-md-6">
-                        <img src="images/2016-09-03-1472910438-5073818-lovebooks-thumb.jpg" alt="books-pic">
+                        <img class="img-thumbnail" src="images/book_PNG2111.png" alt="books-pic">
                     </div>
-                </a>
-            </div>
-            <a href="#userBooks">View all books</a>
-        </section>
-        <section class="col-lg-10 currentlyReadingShelf">
-            <h4>BOOKSHELVES</h4>
-            <div class="userShelvesBookCounts">
-                <a href="#">0</a>
-                <br>
-                <a href="#">0</a>
-                <br>
-                <a href="#">0</a>
-            </div>
-            <div class='userShelvesBook'>
-                <a href="#">Read</a>
-                <br>
-                <a href="#">Currently Reading</a>
-                <br>
-                <a href="#">Want to Read</a>
-            </div>
-        </section>
-    </div>
-    <div class="col-lg-8" ng-controller="bookController">
-        <div class="panel panel">
-            <div id="design-cast">
-                <h4>Random List:</h4>
-                <div class="panel-body">
-                    <div class="row">
-                        <div ng-show="(books | filter:text).length == 0">No results</div>
-                        <div ng-repeat="book in books | filter: text">
-                            <div class="col-md-2">
-                                <a class="member" href="details/{{book._id}}">
-                                    <img ng-src="{{book.img_url}}" class="img-responsive img-thumbnail" alt="Responsive image" />
-                                    <!-- <div class="name">{{book.title}}</div> -->
+                    <span>What are you reading?</span>
+                </div>
+                <div class="form-group">
+                    <form class="navbar-form" role="search">
+                        <div class="input-group add-on">
+                            <input class="form-control" placeholder="Title / Author / Genre" name="srch-term" id="srch-term" type="text" ng-model="text">
+                            <div class="input-group-btn">
+                                <a href="/search" class="btn btn-default">
+                                    <i class="glyphicon glyphicon-search"></i>
                                 </a>
+                            </div>
+                        </div>
+                        <!-- track by $index -->
+                    </form>
+                </div>
+                <p>Searching books</p>
+            </section>
+            <section class="homeLeftSide">
+                <h4>READING CHALLENGE</h4>
+                <p>Challenge yourself to read more this year!</p>
+                <div class="form-group">
+                    <div class="col-lg-4">
+                        <img class="img-thumbnail" src="images/BurnBooks.png" alt="books-pic">
+                    </div>
+                    <div class="gr-mediaBox">
+                        <p>I want to read</p>
+                        <input type="number" placeholder="12">
+                        <p>books in this year</p>
+                        <button type="submit" class="btn btn-default">Start challenge</button>
+                    </div>
+                </div>
+            </section>
+            <section class="homeLeftSide">
+                <h4>WANT TO READ</h4>
+                <div class="form-group">
+                    <a href="#">
+                        <div class="col-md-6">
+                            <img class="img-thumbnail" src="images/Pile_of_books_1.png" alt="books-pic">
+                        </div>
+                    </a>
+                </div>
+                <a href="#userBooks">View all books</a>
+            </section>
+            <section class="homeLeftSide">
+                <h4>BOOKSHELVES</h4>
+                <div class="userShelvesBookCounts">
+                    <a href="#">0</a>
+                    <br>
+                    <a href="#">0</a>
+                    <br>
+                    <a href="#">0</a>
+                </div>
+                <div class='userShelvesBook'>
+                    <a href="#">Read</a>
+                    <br>
+                    <a href="#">Currently Reading</a>
+                    <br>
+                    <a href="#">Want to Read</a>
+                </div>
+            </section>
+        </div>
+        <!-- class="col-lg-8" -->
+        <div class="col-md-8" ng-controller="bookController">
+            <div class="panel panel">
+                <div id="design-cast">
+                    <h4>
+                        <strong id="list"> Random List:</strong>
+                    </h4>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div ng-show="(books | filter:text).length == 0">No results</div>
+                            <div class="rowImage" ng-repeat="book in books | filter: text">
+                                <div class="col-md-2 imagePosition">
+                                    <a class="member" href="details/{{book._id}}">
+                                        <img class="randomImages img-thumbnail" ng-src="{{book.img_url}}" alt="Responsive image" />
+                                        <!-- <div class="name">{{book.title}}</div> -->
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
