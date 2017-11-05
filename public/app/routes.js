@@ -32,6 +32,18 @@ var app = angular.module('appRoutes', ['ngRoute'])
                 controller: 'favBookController',
                 authenticated: true
             })
+            .when('/MyBooks/reads', {
+                templateUrl: 'app/views/pages/show_readBooks.htm',
+                controller: 'readBookController'
+            })
+            .when('/MyBooks/stillreadbooks', {
+                templateUrl: 'app/views/pages/show_stillreadBooks.htm',
+                controller: 'stillReadBookController'
+            })
+            .when('/MyBooks/toreadbooks', {
+                templateUrl: 'app/views/pages/show_toreadBooks.htm',
+                controller: 'toReadBookController'
+            })
             .when('/register', {
                 templateUrl: 'app/views/pages/users/register.html',
                 controller: 'regCtrl',
@@ -47,7 +59,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
                 authenticated: false
             })
 
-            .when('/profile', {
+        .when('/profile', {
                 templateUrl: 'app/views/pages/users/profile.html',
                 authenticated: true,
             })

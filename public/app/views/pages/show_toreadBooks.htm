@@ -1,0 +1,61 @@
+<div class="page-header" ng-controller="toReadBookController">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <h3>Bookshelves <strong>{{main.username}}</strong></h3>
+                    </div>
+                </div>
+                <div class="list-group">
+                    <a href="#" class="list-group-item">Favorite books</a>
+                    <a href="#" class="list-group-item">Read</a>
+                    <a href="#" class="list-group-item">Currently reading</a>
+                    <a href="#" class="list-group-item">To read</a>
+                </div>
+                <div class="col-sm-8">
+                    <a href="/MyBooks"><span class="glyphicon glyphicon-circle-arrow-left	Try it"></span> Go back</a>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="panel row">
+                    <h4>Favourites Books:</h4>
+                    <table class="table table-filter" ng-init="getToReadBooksCurrentUser()">
+                        <thead>
+                            <tr class="col-md-12">
+                                <th class="col-md-2">cover</th>
+                                <th class="col-md-2">title</th>
+                                <th class="col-md-2">author</th>
+                                <th class="col-md-2">pages</th>
+                                <th class="col-md-2">date add</th>
+                                <th class="col-md-2">edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="toReadBook in toReadBooks | filter: text" class="col-md-12">
+                                <td class="col-md-2">
+                                    <img class="img-responsive img-thumbnail" ng-src="{{toReadBook.book.img_url}}" alt="pic">
+                                </td>
+                                <td class="col-md-2">
+                                    <span class="title">{{toReadBook.book.title}}</span>
+                                </td>
+                                <td class="col-md-2">
+                                    <span class="summary">{{toReadBook.book.author}}</span>
+                                </td>
+                                <td class="col-md-2">
+                                    <span class="summary">{{toReadBook.book.pages}}</span>
+                                </td>
+                                <td class="col-md-2">
+                                    <span class="summary">{{toReadBook.book.create_date}}</span>
+                                </td>
+                                <td class="col-md-2">
+                                    <span class="btn btn-default glyphicon glyphicon-remove" ng-click="deleteToReadBook(toReadBook._id)"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
