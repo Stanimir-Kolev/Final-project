@@ -1,19 +1,40 @@
-<div class="page-header">
-    <h1>{{main.username}}'s Profile</h1>
-</div>
-
-<div class="panel panel-info">
-    <div class="panel-heading" style="text-align: center"><strong>User Profile</strong></div>
-    <table class="table">
-        <tr>
-            <td><strong>Username</strong></td>
-            <td><strong>Email Address</strong></td>
-            <td><strong>Password</strong></td>
-        </tr>
-        <tr>
-            <td>{{main.username}}</td>
-            <td>{{main.useremail}}</td>
-            <td>*****************</td>
-        </tr>
-    </table>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <img id="userPic" src="http://pngimages.net/sites/default/files/user-png-image-15189.png" />
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4>
+                            {{main.username}}</h4>
+                        <small><cite title="Sofia, BG">Sofia, BG<i class="glyphicon glyphicon-map-marker">
+                        </i></cite></small>
+                        <p>
+                            <i class="glyphicon glyphicon-envelope"></i>{{main.useremail}}
+                            <br />
+                            <i class="glyphicon glyphicon-globe"></i><a href="https://www.goodreads.com">https://www.goodreads.com</a>
+                            <br />
+                            <i class="glyphicon glyphicon-gift"></i>June 02, 1988</p>
+                        <!-- Split button -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary">
+                                Social</button>
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span><span class="sr-only">Social</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="https://twitter.com/">Twitter</a></li>
+                                <li><a href="https://plus.google.com/">Google +</a></li>
+                                <li><a href="https://www.facebook.com/">Facebook</a></li>
+                                <li class="divider"></li>
+                                <li><a href="https://github.com/Stanimir-Kolev/Final-project.git">Github</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

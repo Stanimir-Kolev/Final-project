@@ -4,6 +4,11 @@ app.controller("toReadBookController", ["Auth", "$scope", "$http", "$location", 
     $scope.getToReadBooks = function() {
             $http.get("/toreadbooks").then(function(response) {
                 $scope.toReadBooks = response.data;
+                if (response.data.length == 0) {
+                    $scope.length = 0;
+                } else {
+                    $scope.length = response.data.length
+                }
             })
         }
         //show current User All stillreadbooks
