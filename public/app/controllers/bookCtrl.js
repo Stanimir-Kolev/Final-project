@@ -18,7 +18,6 @@ app.controller("bookController", ["Auth", "$scope", "$http", "$location", "$rout
                 if (masWithStats.length != 0) {
                     $scope.oldRating = masWithStats.reduce((a, b) => a + b) / masWithStats.length;
                 } else $scope.oldRating = 1;
-                console.log($scope.oldRating);
 
                 var usersIdMas = response.data.rating.userId;
 
@@ -32,9 +31,6 @@ app.controller("bookController", ["Auth", "$scope", "$http", "$location", "$rout
                         if (usersIdMas.find(x => x == currentUserObject.id) == undefined)
                             usersIdMas.push(currentUserObject.id);
                         else throw new Error("ima go v masiva");
-                        console.log(masWithStats)
-                        console.log(usersIdMas)
-                        console.log($scope.book)
                         var newBook = {
                             title: $scope.book.title,
                             author: $scope.book.author,

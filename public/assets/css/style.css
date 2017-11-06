@@ -1,5 +1,11 @@
-main {
-    padding-top: 30px;
+body {
+    background-image: url("../../images/165911.jpg");
+    /* background-repeat: no-repeat; */
+    /* background-position: center; */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 header .navbar {
@@ -48,8 +54,34 @@ header .navbar {
 
 /*  */
 
-body {
-    background-color: rgba(244, 241, 234, 0.5);
+.panel {
+    border: 1px solid lightgrey;
+    background-color: khaki;
+    opacity: 0.9;
+    filter: alpha(opacity=50);
+}
+
+section {
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid lightgrey;
+    background-color: khaki;
+    opacity: 0.9;
+    filter: alpha(opacity=50);
+}
+
+section:last-of-type {
+    text-align: -webkit-auto;
+}
+
+section.homeLeftSide {
+    background-color: khaki;
+}
+
+section.homeLeftSide>div>div>img {
+    background-color: rgb(230, 222, 159);
+    border: 1px solid rgb(151, 142, 142);
 }
 
 
@@ -90,7 +122,6 @@ body {
 
 .cont-from-search {
     display: inline-block;
-    border-bottom: 1px solid grey;
     border-left: 1px solid burlywood;
     border-right: 1px solid burlywood;
     border-top: none;
@@ -311,15 +342,6 @@ body {
 
 /* user profil */
 
-body {
-    padding-top: 30px;
-}
-
-.glyphicon {
-    margin-bottom: 10px;
-    margin-right: 10px;
-}
-
 small {
     display: block;
     line-height: 1.428571429;
@@ -391,4 +413,16 @@ label.star:hover {
 label.star:before {
     content: '\f006';
     font-family: FontAwesome;
+}
+
+
+/* footer */
+
+footer {
+    background-color: black;
+    color: #9d9d9d;
+}
+
+a:hover {
+    text-decoration: none;
 }

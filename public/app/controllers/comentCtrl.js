@@ -71,6 +71,7 @@ app.controller("comentController", ["Auth", "$scope", "$http", "$location", "$ro
             $scope.coment.likes++;
             $http.put("/coments/" + id, $scope.coment).then(function(response) {
                 $scope.getComents();
+                // $scope.coments.push($scope.coment);
             })
         })
     }
