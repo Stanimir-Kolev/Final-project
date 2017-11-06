@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="page-header">
-                    <h1 id="forms"> User Registration</h1>
+                    <h3 id="forms"> User Registration</h3>
                 </div>
             </div>
         </div>
@@ -39,9 +39,7 @@
                             (!regForm.email.$valid && regForm.$submitted) || register.emailInvalid}">
                                     <label for="inputEmail" class="col-lg-2 control-label">Email:</label>
                                     <div class="col-lg-10">
-                                        <input type="text" class="form-control" name="email" id="inputEmail" placeholder="Email" ng-model="register.regData.email"
-                                            ng-minlength="3" ng-maxlength="25" ng-pattern="/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/"
-                                            ng-blur="register.checkEmail(regData);" required>
+                                        <input type="text" class="form-control" name="email" id="inputEmail" placeholder="Email" ng-model="register.regData.email" ng-minlength="3" ng-maxlength="25" ng-pattern="/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/" ng-blur="register.checkEmail(regData);" required>
                                         <p class="help-block" ng-show="(!regForm.email.$pristine && regForm.email.$error.required) ||(regForm.$submitted && regForm.email.$error.required) ">This field is required</p>
                                         <span ng-show="register.checkingEmail" class="glyphicon glypicon-repeat"></span>
                                         <p class="help-block" ng-show="register.emailMsg && !regForm.email.$error.required && regForm.email.$valid">{{register.emailMsg}}</p>
@@ -60,9 +58,8 @@
                             (!regForm.username.$valid && regForm.$submitted) || register.usernameInvalid}">
                                     <label for="inputUsername" class="col-lg-2 control-label">Username:</label>
                                     <div class="col-lg-10">
-                                        <input type="text" class="form-control" name="username" id="inputUsername" placeholder="Username" ng-model="register.regData.username"
-                                            ng-minlength="3" ng-maxlength="25" ng-pattern="/^(?!.*?[\W])(?=.*?[a-zA-Z]|=.*?[A-Z]).{3,16}$/"
-                                            ng-blur="register.checkUsername(regData);" required>
+                                        <input type="text" class="form-control" name="username" id="inputUsername" placeholder="Username" ng-model="register.regData.username" ng-minlength="3" ng-maxlength="25" ng-pattern="/^(?!.*?[\W])(?=.*?[a-zA-Z]|=.*?[A-Z]).{3,16}$/" ng-blur="register.checkUsername(regData);"
+                                            required>
                                         <p class="help-block" ng-show="(!regForm.username.$pristine && regForm.username.$error.required) ||(regForm.$submitted && regForm.username.$error.required) ">This field is required</p>
                                         <span ng-show="register.checkingUsername" class="glyphicon glypicon-repeat"></span>
                                         <p class="help-block" ng-show="register.usernameMsg && !regForm.username.$error.required && regForm.username.$valid">{{register.usernameMsg}}</p>
@@ -80,9 +77,7 @@
                            (!regForm.firstPassword.$valid && regForm.$submitted)}">
                                     <label for="inputPassword" class="col-lg-2 control-label">Password:</label>
                                     <div class="col-lg-10">
-                                        <input type="password" class="form-control" id="inputPassword" name="firstPassword" placeholder="Password" ng-model="firstPassword"
-                                            ng-minlength="7" ng-maxlength="35" ng-pattern="/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d])(?!.*?[\W]).{7,35}$/"
-                                            required>
+                                        <input type="password" class="form-control" id="inputPassword" name="firstPassword" placeholder="Password" ng-model="firstPassword" ng-minlength="7" ng-maxlength="35" ng-pattern="/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d])(?!.*?[\W]).{7,35}$/" required>
                                         <p class="help-block" ng-show="(!regForm.firstPassword.$pristine && regForm.firstPassword.$error.required) ||(regForm.$submitted && regForm.firstPassword.$error.required) ">This field is required</p>
                                         <ul ng-show="(!regForm.firstPassword.$pristine && regForm.firstPassword.$error.pattern)||(!regForm.firstPassword.$pristine && regForm.firstPassword.$error.minlength)||
                                     (!regForm.firstPassword.$pristine && regForm.firstPassword.$error.maxlength)" class="help-block">
@@ -102,8 +97,7 @@
                                  ||(regForm.confirmPassword.$error.required && !regForm.confirmPassword.$pristine) || (regForm.$submitted && regForm.confirmPassword.$error.required)}">
                                     <label for="inputPassword" class="col-lg-2 control-label">Confirm: </label>
                                     <div class="col-lg-10">
-                                        <input type="password" class="form-control" id="inputPassword" name="confirmPassword" placeholder="Confirm Password" match="{{ [firstPassword] }}"
-                                            ng-change="register.regData.password = confirm" ng-model="confirm" required>
+                                        <input type="password" class="form-control" id="inputPassword" name="confirmPassword" placeholder="Confirm Password" match="{{ [firstPassword] }}" ng-change="register.regData.password = confirm" ng-model="confirm" required>
                                         <p class="help-block" ng-show="(!regForm.confirmPassword.$pristine && regForm.confirmPassword.$error.required) ||(regForm.$submitted && regForm.confirmPassword.$error.required) ">This field is required</p>
                                         <p class="help-block" ng-show="!confirmed && !regFrom.confirmPassword.$pristine && regForm.firstPassword.$valid">Passwords do not match</p>
                                     </div>

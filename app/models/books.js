@@ -12,7 +12,7 @@ var bookSchema = mongoose.Schema({
     buy_url: { type: String },
     comments: { type: Object },
     create_date: { type: Date, default: Date.now },
-    rating: { type: Number }
+    rating: { type: Object }
 });
 var Book = module.exports = mongoose.model('Book', bookSchema);
 // get Books

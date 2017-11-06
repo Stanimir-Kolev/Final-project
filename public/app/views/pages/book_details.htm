@@ -1,27 +1,42 @@
 <div class="container" ng-controller='comentController'>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
     <div class="col-sm-8 bookDetailsButton">
-        <a href="/MyBooks">
-            <button class="btn btn-primary">
-                <span class="glyphicon glyphicon-circle-arrow-left	Try it "></span> Go back</button>
-        </a>
+        <a href="/MyBooks"> <button id="bookDetailsButton" type="button" class="btn btn-primary">Go Back</button></a>
     </div>
     <div class="panel panel-default" ng-init="getBook()">
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-4">
                     <img src="{{book.img_url}}" alt="" class="thumbnail">
-                    <div>
-                        <ul class="c-rating">
-                            <li class="c-rating__item is-active" data-index="0"></li>
-                            <li class="c-rating__item is-active" data-index="1"></li>
-                            <li class="c-rating__item" data-index="2"></li>
-                            <li class="c-rating__item" data-index="3"></li>
-                            <li class="c-rating__item" data-index="4"></li>
-                        </ul>
+                    <div class="stars">
+                        <div id="stats">
+                            <span>{{oldRating}}</span>
+                        </div>
+                        <form action="">
+                            <input class="star star-5" id="star-5" type="radio" ng-click="addUserRating(5)" />
+                            <label class="star star-5" for="star-5"></label>
+                            <input class="star star-4" id="star-4" type="radio" ng-click="addUserRating(4)" />
+                            <label class="star star-4" for="star-4"></label>
+                            <input class="star star-3" id="star-3" type="radio" ng-click="addUserRating(3)" />
+                            <label class="star star-3" for="star-3"></label>
+                            <input class="star star-2" id="star-2" type="radio" ng-click="addUserRating(2)" />
+                            <label class="star star-2" for="star-2"></label>
+                            <input class="star star-1" id="star-1" type="radio" ng-click="addUserRating(1)" />
+                            <label class="star star-1" for="star-1"></label>
+                        </form>
                     </div>
                 </div>
                 <div class="col-md-8">
                     <ul class="list-group list-group-item">
+                        <li class="list-group-item"><strong>Title: </strong>{{book.title}}</li>
+                        <li class="list-group-item"><strong>Author: </strong>{{book.author}}</li>
+                        <li class="list-group-item"><strong>Genre: </strong>{{book.genre}}</li>
+                        <li class="list-group-item"><strong>Pages: </strong>{{book.pages}}</li>
+                        <li class="list-group-item"><strong>Published by </strong>{{book.published}}</li>
+                        <li class="list-group-item"><strong>Description: </strong>{{book.description}}</li>
+
                         <li class="list-group-item">
                             <strong>Title: </strong>{{book.title}}</li>
                         <li class="list-group-item">
@@ -38,15 +53,14 @@
                         <li class="list-group-item">
                             <button class="btn btn-success" ng-controller='favBookController' ng-click="addFavBook()">
                                 <span class="glyphicon glyphicon-heart"></span>Favourite</button>
-                                <!-- <div class="alert alert-danger" >{{ errorMsg }}</div> -->
                             <button class="btn btn-warning" ng-controller='readBookController' ng-click="addReadBook()">
-                                <span class="glyphicon glyphicon-ok-circle"></span> Read</button>
+                                <span class="glyphicon glyphicon-ok-circle"></span>Read</button>
                             <button class="btn btn-info" ng-controller='stillReadBookController' ng-click="addStillReadBook()">
-                                <span class="glyphicon glyphicon-retweet"></span> Still read</button>
+                                <span class="glyphicon glyphicon-retweet"></span>Still read</button>
                             <button class="btn btn-danger" ng-controller='toReadBookController' ng-click="addToReadBook()">
-                                <span class="glyphicon glyphicon-tag"></span> To read</button>
+                                <span class="glyphicon glyphicon-tag"></span>To read</button>
                             <a class="btn btn-primary" href="{{book.buy_url}}">
-                                <span class="glyphicon glyphicon-usd"></span> Amazon</a>
+                                <span class="glyphicon glyphicon-usd"></span>Amazon</a>
                         </li>
                         
                         <li class="list-group-item" ng-init="getComents()">

@@ -10,10 +10,10 @@
                     </div>
                 </div>
                 <div class="list-group">
-                    <a href="#" class="list-group-item">Favorite books</a>
-                    <a href="#" class="list-group-item">Books to be read</a>
-                    <a href="#" class="list-group-item">Books currently being read</a>
-                    <a href="#" class="list-group-item">Books have been read</a>
+                    <a href="/MyBooks/favourites" class="list-group-item">Favorite books</a>
+                    <a href="/MyBooks/reads" class="list-group-item">Books to be read</a>
+                    <a href="/MyBooks/stillreadbooks" class="list-group-item">Books currently being read</a>
+                    <a href="/MyBooks/toreadbooks" class="list-group-item">Books have been read</a>
                 </div>
                 <div class="col-sm-8">
                     <a href="/MyBooks"><button class="btn btn-primary"><span class="glyphicon glyphicon-circle-arrow-left	Try it "></span> Go back</button></a>
@@ -32,8 +32,7 @@
                             <ul class="commentList">
                                 <li ng-repeat="coment in coments | filter">
                                     <div class="commenterImage">
-                                        <img ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Circle-icons-profle.svg/120px-Circle-icons-profle.svg.png"
-                                        />
+                                        <img ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Circle-icons-profle.svg/120px-Circle-icons-profle.svg.png" />
                                     </div>
                                     <div class="commentText">
                                         <p>

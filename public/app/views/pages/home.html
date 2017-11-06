@@ -3,13 +3,13 @@
         <div class="col-lg-4">
             <section class="homeLeftSide">
                 <h4>CURRENTLY READING</h4>
-                <div class="form-group">
+                <div class="read_box form-group">
                     <div class="col-md-6">
                         <img class="img-thumbnail" src="images/book_PNG2111.png" alt="books-pic">
                     </div>
                     <span>What are you reading?</span>
                 </div>
-                <div class="form-group">
+                <div class="read_box form-group">
                     <form class="navbar-form" role="search">
                         <div class="input-group add-on">
                             <input class="form-control" placeholder="Title / Author / Genre" name="srch-term" id="srch-term" type="text" ng-model="text">
@@ -27,7 +27,7 @@
             <section class="homeLeftSide">
                 <h4>READING CHALLENGE</h4>
                 <p>Challenge yourself to read more this year!</p>
-                <div class="form-group">
+                <div class="read_box form-group">
                     <div class="col-lg-4">
                         <img class="img-thumbnail" src="images/BurnBooks.png" alt="books-pic">
                     </div>
@@ -41,30 +41,23 @@
             </section>
             <section class="homeLeftSide">
                 <h4>WANT TO READ</h4>
-                <div class="form-group">
-                    <a href="#">
-                        <div class="col-md-6">
-                            <img class="img-thumbnail" src="images/Pile_of_books_1.png" alt="books-pic">
-                        </div>
-                    </a>
+                <div class="read_box form-group">
+                    <!-- <a href="#"> -->
+                    <div class="col-md-6">
+                        <img class="img-thumbnail" src="images/Pile_of_books_1.png" alt="books-pic">
+                    </div>
+                    <!-- </a> -->
                 </div>
-                <a href="#userBooks">View all books</a>
+                <a href="/MyBooks">View all books</a>
             </section>
             <section class="homeLeftSide">
                 <h4>BOOKSHELVES</h4>
                 <div class="userShelvesBookCounts">
-                    <a href="#">0</a>
+                    <a href="/MyBooks/reads" ng-controller='readBookController' ng-init="getReadBooks()"><span class="counter_books">{{length}}</span>&nbsp;Read</a>
                     <br>
-                    <a href="#">0</a>
+                    <a href="/MyBooks/stillreadbooks" ng-controller='stillReadBookController' ng-init="getStillReadBooks()"><span class="counter_books">{{length}}</span>&nbsp;Currently Reading</a>
                     <br>
-                    <a href="#">0</a>
-                </div>
-                <div class='userShelvesBook'>
-                    <a href="#">Read</a>
-                    <br>
-                    <a href="#">Currently Reading</a>
-                    <br>
-                    <a href="#">Want to Read</a>
+                    <a href="/MyBooks/toreadbooks" ng-controller='toReadBookController' ng-init="getToReadBooks()"><span class="counter_books">{{length}}</span>&nbsp;Want to Read</a>
                 </div>
             </section>
         </div>
