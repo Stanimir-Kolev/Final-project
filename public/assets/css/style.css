@@ -337,6 +337,15 @@ small {
     cursor: pointer;
 }
 
+#stats {
+    display: inline-block;
+    width: 10%;
+    font-size: 2em;
+    float: right;
+    padding: 5px;
+    color: red;
+}
+
 div.stars {
     width: 270px;
     display: inline-block;
@@ -345,7 +354,7 @@ div.stars {
 
 div.stars>form {
     display: inline-block;
-    width: 100%;
+    width: 70%;
 }
 
 input.star {
@@ -354,8 +363,8 @@ input.star {
 
 label.star {
     float: right;
-    padding: 10px;
-    font-size: 36px;
+    padding: 5px;
+    font-size: 25px;
     color: #444;
     transition: all .2s;
 }

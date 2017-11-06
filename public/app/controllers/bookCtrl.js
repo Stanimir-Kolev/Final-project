@@ -1,5 +1,5 @@
 var app = angular.module("homeController", []);
-app.controller("bookController", ["$scope", "$http", "$location", "$routeParams", function($scope, $http, $location, $routeParams) {
+app.controller("bookController", ["Auth", "$scope", "$http", "$location", "$routeParams", function(Auth, $scope, $http, $location, $routeParams) {
     // show all books api
     $scope.getBooks = function() {
             $http.get("/books").then(function(response) {
@@ -12,6 +12,49 @@ app.controller("bookController", ["$scope", "$http", "$location", "$routeParams"
             var id = $routeParams.id;
             $http.get("/books/" + id).then(function(response) {
                 $scope.book = response.data;
+                // get RATING
+                var masWithStats = $scope.book.rating.ratingStat;
+
+                if (masWithStats.length != 0) {
+                    $scope.oldRating = masWithStats.reduce((a, b) => a + b) / masWithStats.length;
+                } else $scope.oldRating = 1;
+                console.log($scope.oldRating);
+
+                var usersIdMas = response.data.rating.userId;
+
+                $scope.addUserRating = function(newRating) {
+
+                    masWithStats.push(newRating);
+
+                    Auth.getUser().then(function(response) {
+                        var currentUserObject = response.data;
+
+                        if (usersIdMas.find(x => x == currentUserObject.id) == undefined)
+                            usersIdMas.push(currentUserObject.id);
+                        else throw new Error("ima go v masiva");
+                        console.log(masWithStats)
+                        console.log(usersIdMas)
+                        console.log($scope.book)
+                        var newBook = {
+                            title: $scope.book.title,
+                            author: $scope.book.author,
+                            genre: $scope.book.genre,
+                            description: $scope.book.description,
+                            publisher: $scope.book.publisher,
+                            pages: $scope.book.pages,
+                            img_url: $scope.book.img_url,
+                            buy_url: $scope.book.buy_url,
+                            comments: $scope.book.comments,
+                            rating: {
+                                userId: usersIdMas,
+                                ratingStat: masWithStats
+                            }
+                        }
+                        $http.put("/books/" + id, newBook).then(function(response) {
+                            $scope.getBook();
+                        });
+                    })
+                }
             })
         }
         //edit book api

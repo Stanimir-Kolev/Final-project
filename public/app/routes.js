@@ -1,10 +1,10 @@
 var app = angular.module('appRoutes', ['ngRoute'])
-    .config(function ($routeProvider, $locationProvider) {
+    .config(function($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'app/views/pages/home.html',
                 controller: 'bookController'
-                //  authenticated: true
+                    //  authenticated: true
             })
             .when('/search', {
                 templateUrl: 'app/views/pages/fullSearch.htm',
@@ -13,7 +13,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
             .when('/details/:id', {
                 templateUrl: 'app/views/pages/book_details.htm',
                 controller: 'bookController'
-                // authenticated: true
+                    // authenticated: true
             })
             .when('/MyBooks', {
                 templateUrl: 'app/views/pages/MyBooks.html',
@@ -76,7 +76,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
                 authenticated: false
             })
 
-            .otherwise({ redirectTo: '/' });
+        .otherwise({ redirectTo: '/' });
 
         $locationProvider.html5Mode({ /// za mahane na #
             enabled: true,
@@ -84,9 +84,9 @@ var app = angular.module('appRoutes', ['ngRoute'])
         })
     })
 
-app.run(['$rootScope', 'Auth', '$location', function ($rootScope, Auth, $location) {
-    $rootScope.$on('$routeChangeStart', function (event, next, current) {
-        console.log(next.$$route.authenticated); //current route 
+app.run(['$rootScope', 'Auth', '$location', function($rootScope, Auth, $location) {
+    $rootScope.$on('$routeChangeStart', function(event, next, current) {
+        // console.log(next.$$route.authenticated); //current route 
         if (next.$$route.authenticated == true) {
             if (!Auth.isLoggedIn()) {
                 event.preventDefault(); // kogato napishat naprimer http://localhost:8000/profile bez tova shte si otidat tam ... tova ne mu pozvolqva ako ne e lognat
