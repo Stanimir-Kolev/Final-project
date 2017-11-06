@@ -8,7 +8,6 @@ angular.module('mainController', ['authServices'])
     //vseki put kato ima razlichno view ... shte se izvika slednata funktciq
     $rootScope.$on('$routeChangeStart', function() {
 
-
         if (Auth.isLoggedIn()) {
             self.isLoggedIn = true;
             Auth.getUser().then(function(data) {

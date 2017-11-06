@@ -13,7 +13,6 @@ angular.module('userControllers', ['userServices'])
                         $timeout(function() {
                             $location.path('/');
                         }, 2000)
-
                     } else {
                         self.loading = false;
                         self.errorMsg = data.data.message;

@@ -268,7 +268,7 @@ display: inline-block;
 .addBooksCommentButtons{
     text-align: center;
 }
-#favoritePile{
+.yourBooks{
     text-align: center;
     padding: 2% 0;
 }

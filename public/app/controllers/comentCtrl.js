@@ -46,12 +46,13 @@ app.controller("comentController", ["Auth", "$scope", "$http", "$location", "$ro
                 if (validString(text))
                     this.text = text;
 
-                this.date = new Date().toLocaleString("en-GB");
+                this.date = new Date().toLocaleString();
                 this.rating = null
             }
             $scope.coment = new Coment(userObject, currentBookId, textFromInput);
             $http.post("/coments", $scope.coment).then(function(response) {
                 $scope.getComents();
+                // $scope.coments.push($scope.coment);
             })
         })
         setTimeout(function() {

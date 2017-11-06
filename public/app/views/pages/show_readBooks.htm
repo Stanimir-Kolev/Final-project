@@ -9,30 +9,30 @@
                 </div>
                 <div class="list-group">
                     <a href="#" class="list-group-item">Favorite books</a>
-                    <a href="#" class="list-group-item">Read</a>
-                    <a href="#" class="list-group-item">Currently reading</a>
-                    <a href="#" class="list-group-item">To read</a>
+                    <a href="#" class="list-group-item">Books to be read</a>
+                    <a href="#" class="list-group-item">Books currently being read</a>
+                    <a href="#" class="list-group-item">Books have been read</a>
                 </div>
                 <div class="col-sm-8">
-                    <a href="/MyBooks"><span class="glyphicon glyphicon-circle-arrow-left	Try it"></span> Go back</a>
+                    <a href="/MyBooks"><button class="btn btn-primary"><span class="glyphicon glyphicon-circle-arrow-left	Try it "></span> Go back</button></a>
                 </div>
             </div>
             <div class="col-md-8">
                 <div class="panel row">
-                    <h4>Favourites Books:</h4>
-                    <table class="table table-filter" ng-init="getReadBooksCurrentUser()">
-                        <thead>
-                            <tr class="col-md-12">
-                                <th class="col-md-2">cover</th>
-                                <th class="col-md-2">title</th>
-                                <th class="col-md-2">author</th>
-                                <th class="col-md-2">pages</th>
-                                <th class="col-md-2">date add</th>
-                                <th class="col-md-2">edit</th>
+                    <h4 class="yourBooks"><strong> Books to be read</strong></h4>
+                    <table class="table table-striped table-hover table-bordered" ng-init="getReadBooksCurrentUser()">
+                        <thead  class="thead-dark">
+                            <tr>
+                                <th class="col-md-2">Cover</th>
+                                <th class="col-md-2">Title</th>
+                                <th class="col-md-2">Author</th>
+                                <th class="col-md-2">Pages</th>
+                                <th class="col-md-2">Date</th>
+                                <th class="col-md-2">Edit</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="readBook in readBooks | filter: text" class="col-md-12">
+                            <tr ng-repeat="readBook in readBooks | filter: text" class="table-info">
                                 <td class="col-md-2">
                                     <img class="img-responsive img-thumbnail" ng-src="{{readBook.book.img_url}}" alt="pic">
                                 </td>

@@ -13,7 +13,6 @@ var app = angular.module('appRoutes', ['ngRoute'])
             .when('/details/:id', {
                 templateUrl: 'app/views/pages/book_details.htm',
                 controller: 'bookController'
-                // authenticated: true
             })
             .when('/MyBooks', {
                 templateUrl: 'app/views/pages/MyBooks.html',
@@ -21,11 +20,13 @@ var app = angular.module('appRoutes', ['ngRoute'])
             })
             .when('/MyBooks/add', {
                 templateUrl: 'app/views/pages/add_book.htm',
-                controller: 'bookController'
+                controller: 'bookController',
+                authenticated: true
             })
             .when('/MyBooks/show_comments', {
                 templateUrl: 'app/views/pages/show_user_comments.htm',
-                controller: 'comentController'
+                controller: 'comentController',
+                authenticated: true
             })
             .when('/MyBooks/favourites', {
                 templateUrl: 'app/views/pages/show_favBooks.htm',
@@ -34,15 +35,18 @@ var app = angular.module('appRoutes', ['ngRoute'])
             })
             .when('/MyBooks/reads', {
                 templateUrl: 'app/views/pages/show_readBooks.htm',
-                controller: 'readBookController'
+                controller: 'readBookController',
+                authenticated: true
             })
             .when('/MyBooks/stillreadbooks', {
                 templateUrl: 'app/views/pages/show_stillreadBooks.htm',
-                controller: 'stillReadBookController'
+                controller: 'stillReadBookController',
+                authenticated: true
             })
             .when('/MyBooks/toreadbooks', {
                 templateUrl: 'app/views/pages/show_toreadBooks.htm',
-                controller: 'toReadBookController'
+                controller: 'toReadBookController',
+                authenticated: true
             })
             .when('/register', {
                 templateUrl: 'app/views/pages/users/register.html',
