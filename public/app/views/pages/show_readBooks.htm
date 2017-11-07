@@ -14,20 +14,20 @@
                     <a href="/MyBooks/toreadbooks" class="list-group-item">Books have been read</a>
                 </div>
                 <div class="col-sm-8">
-                    <a href="/MyBooks"><button class="btn btn-primary"><span class="glyphicon glyphicon-circle-arrow-left	Try it "></span> Go back</button></a>
+                    <a href="/MyBooks" class="btn btn-primary"><span class="glyphicon glyphicon-circle-arrow-left	Try it"></span> Go back</a>
                 </div>
             </div>
             <div class="col-md-8">
-                <div class="panel row">
-                    <h4 class="yourBooks"><strong> Books to be read</strong></h4>
-                    <table class="table table-striped table-hover table-bordered" ng-init="getReadBooksCurrentUser()">
-                        <thead  class="thead-dark">
+                <div class="panel row scrollStyle">
+                    <h4 class="favoritePile"><strong>Books have been read</strong></h4>
+                    <table class="table table-striped table-hover table-bordered"  ng-init="getReadBooksCurrentUser()">
+                        <thead class="thead-dark">
                             <tr>
                                 <th class="col-md-2">Cover</th>
                                 <th class="col-md-2">Title</th>
                                 <th class="col-md-2">Author</th>
                                 <th class="col-md-2">Pages</th>
-                                <th class="col-md-2">Date</th>
+                                <th class="col-md-2">Date add</th>
                                 <th class="col-md-2">Edit</th>
                             </tr>
                         </thead>
@@ -49,7 +49,7 @@
                                     <span class="summary">{{readBook.book.create_date}}</span>
                                 </td>
                                 <td class="col-md-2">
-                                    <span class="btn btn-default glyphicon glyphicon-remove" ng-click="deleteReadBook(readBook._id)"></span>
+                                    <span class="btn btn-danger glyphicon glyphicon-remove" ng-click="deleteReadBook(readBook._id)"></span>
                                 </td>
                             </tr>
                         </tbody>

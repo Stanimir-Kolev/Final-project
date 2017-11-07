@@ -1,11 +1,15 @@
-body {
+div#wrapper {
     background-image: url("../../images/165911.jpg");
-    /* background-repeat: no-repeat; */
-    /* background-position: center; */
+    background-repeat: no-repeat;
+    background-position: center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+main {
+    min-height: 800px;
 }
 
 header .navbar {
@@ -56,9 +60,9 @@ header .navbar {
 
 .panel {
     border: 1px solid lightgrey;
-    background-color: khaki;
-    opacity: 0.9;
+    background-color: rgb(255, 247, 213);
     filter: alpha(opacity=50);
+    padding-top: 10px;
 }
 
 section {
@@ -66,9 +70,10 @@ section {
     padding: 10px;
     text-align: center;
     border: 1px solid lightgrey;
-    background-color: khaki;
+    background-color: rgb(255, 247, 213);
     opacity: 0.9;
     filter: alpha(opacity=50);
+    margin-bottom: 15px;
 }
 
 section:last-of-type {
@@ -76,18 +81,22 @@ section:last-of-type {
 }
 
 section.homeLeftSide {
-    background-color: khaki;
+    background-color: rgb(255, 247, 213);
 }
 
 section.homeLeftSide>div>div>img {
-    background-color: rgb(230, 222, 159);
+    background-color: rgb(255, 247, 213);
     border: 1px solid rgb(151, 142, 142);
 }
 
+.scrollStyle {
+    max-height: 600px;
+    overflow-y: scroll;
+}
 
-/* div>img {
-    width: 100%;
-} */
+.page-header {
+    border-bottom: none;
+}
 
 .userShelvesBookCounts {
     display: inline-block;
@@ -120,15 +129,27 @@ section.homeLeftSide>div>div>img {
     width: 100%;
 }
 
+.list-group {
+    opacity: 0.9;
+    filter: alpha(opacity=50);
+}
+
+.list-group-item {
+    background-color: rgb(255, 247, 213);
+    border: 1px solid rgb(172, 161, 161);
+}
+
 .cont-from-search {
     display: inline-block;
-    border-left: 1px solid burlywood;
-    border-right: 1px solid burlywood;
+    border: 1px solid rgb(70, 58, 43);
     border-top: none;
     padding: 10px;
-    background-color: rgb(235, 230, 230);
-    width: 100%;
-    height: 75px;
+    background-color: rgb(255, 247, 213);
+    width: 80%;
+    height: 85px;
+    margin: -2.5px;
+    opacity: 0.9;
+    filter: alpha(opacity=10);
 }
 
 .cont-from-search:hover {
@@ -156,6 +177,7 @@ section.homeLeftSide>div>div>img {
 
 .row>div>h3 {
     margin-top: 10px;
+    color: darkgray;
 }
 
 #searchInMyBooks {
@@ -163,16 +185,18 @@ section.homeLeftSide>div>div>img {
     margin: 0;
 }
 
+#searchInMyBooks>label {
+    color: darkgray;
+}
+
 .navbar-form {
     display: inline-block;
     width: 100%;
 }
 
-.cont-from-search {
-    box-sizing: content-box;
-}
 
-@import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
+/* @import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css); */
+
 .detailBox {
     width: 320px;
     border: 1px solid #bbb;
@@ -216,8 +240,6 @@ section.homeLeftSide>div>div>img {
 .commentList {
     padding: 0;
     list-style: none;
-    max-height: 200px;
-    overflow: auto;
 }
 
 .commentList li {
@@ -252,8 +274,15 @@ section.homeLeftSide>div>div>img {
 }
 
 .actionBox {
-    border-top: 1px dotted #bbb;
     padding: 10px;
+    background-color: rgb(255, 247, 213);
+    opacity: 0.9;
+    filter: alpha(opacity=10);
+}
+
+.commentList>li {
+    border-top: 1px solid rgb(32, 23, 23);
+    padding: 5px;
 }
 
 
@@ -264,10 +293,12 @@ section.homeLeftSide>div>div>img {
 }
 
 .form-area {
-    background-color: #FAFAFA;
     padding: 10px 40px 60px;
     margin: 10px 0px 60px;
     border: 1px solid GREY;
+    background-color: rgb(255, 247, 213);
+    opacity: 0.9;
+    filter: alpha(opacity=10);
 }
 
 .actionBox {
@@ -342,10 +373,6 @@ section.homeLeftSide>div>div>img {
 
 /* user profil */
 
-<<<<<<< HEAD
-
-=======
->>>>>>> ccb2668e1ba330058953b3415619e1f15e5d7965
 small {
     display: block;
     line-height: 1.428571429;
@@ -356,6 +383,11 @@ small {
     width: 100%;
 }
 
+td.col-md-2 {
+    text-align: center;
+    vertical-align: middle;
+}
+
 
 /* rating */
 
@@ -364,10 +396,7 @@ small {
 }
 
 #stats {
-    display: inline-block;
-    width: 10%;
     font-size: 2em;
-    float: right;
     padding: 5px;
     color: red;
 }
@@ -418,6 +447,18 @@ label.star:before {
     content: '\f006';
     font-family: FontAwesome;
 }
+
+.titleBox {
+    background-color: rosybrown;
+}
+
+.favbooktable {
+    background-color: rosybrown;
+}
+
+
+/* footer */
+
 footer {
     background-color: black;
     color: #9d9d9d;
@@ -427,7 +468,40 @@ a:hover {
     text-decoration: none;
 }
 
-.yourBooks{
+.favoritePile{
     text-align: center;
     padding: 2% 0;
+}
+/* pic in home page */
+
+.hero {
+    width: 100%;
+    height: 40%;
+    background: #3498db;
+    display: table;
+}
+
+figure {
+    position: relative;
+}
+
+figure img {
+    -webkit-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+}
+
+figure:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+figure:hover img {
+    -webkit-transform: scale3d(1.1, 1.1, 1);
+    transform: scale3d(1.1, 1.1, 1);
+}
+
+
+.loginRegistration{
+    color:darkgray;
 }

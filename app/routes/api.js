@@ -122,28 +122,7 @@ module.exports = function(router) {
         } else {
             res.json({ success: false, message: 'No token provided' });
         }
-    })
-
-    // functionalnost za zaqvki kum user-a get post put delete books
-    // get users
-    router.get('api/users', function(req, res) {
-        User.getUsers(function(err, users) {
-            if (err) {
-                throw err;
-            }
-            res.json(users)
-        });
     });
-    // get user
-    router.get('api/users/:_id', function(req, res) {
-        User.getUserById(req.params._id, function(err, user) {
-            if (err) {
-                throw err;
-            }
-            res.json(user)
-        });
-    });
-
     router.post('/currentUser', function(req, res) {
         res.send(req.decoded);
     });

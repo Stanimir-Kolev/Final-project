@@ -23,13 +23,7 @@ app.controller("comentController", ["Auth", "$scope", "$http", "$location", "$ro
             })
         })
     }
-    // $scope.getComent = function() {
-    //     var id = $routeParams.id;
-    //     $http.get("/coments/" + id).then(function(response) {
-    //         $scope.coment = response.data;
-    //     })
-    // }
-    $scope.addComent = function () {
+    $scope.addComent = function() {
         var currentBookId = $routeParams.id;
         var textFromInput = document.querySelector("#comentar").value;
         if (Auth.isLoggedIn()) {
@@ -40,13 +34,13 @@ app.controller("comentController", ["Auth", "$scope", "$http", "$location", "$ro
                     this.author = author;
                     this.bookId = bookId;
 
-                    function validString(input) {
-                        if (input.length > 0)
-                            return !(/[\\/&;]/.test(input));
-                        else throw new Error("Must write first");
-                    }
-                    if (validString(text))
-                        this.text = text;
+                function validString(text) {
+                    if (text.length > 0)
+                        return !(/[\\/&;]/.test(text));
+                    else throw new Error("Must write first");
+                }
+                if (validString(text))
+                    this.text = text;
 
                     this.date = new Date().toLocaleString("en-GB");
                     this.rating = null
@@ -70,7 +64,6 @@ app.controller("comentController", ["Auth", "$scope", "$http", "$location", "$ro
     }
     // za like-ovete
     $scope.editComent = function (id) {
-        // proverka dali e minala uspeshno zaqvkata ako da da ne pravi poveche put zaqvki
         $http.get("/coments/" + id).then(function (response) {
             $scope.coment = response.data;
             $scope.coment.likes++;

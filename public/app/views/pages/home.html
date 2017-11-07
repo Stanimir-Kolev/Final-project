@@ -24,7 +24,6 @@
                     </form>
                 </div>
             </section>
-            <hr>
             <section class="homeLeftSide">
                 <h4>READING CHALLENGE</h4>
                 <p>Challenge yourself to read more this year!</p>
@@ -40,7 +39,6 @@
                     </div>
                 </div>
             </section>
-            <hr>
             <section class="homeLeftSide">
                 <h4>WANT TO READ</h4>
                 <div class="read_box form-group">
@@ -50,7 +48,6 @@
                 </div>
                 <a href="/MyBooks">View all books</a>
             </section>
-            <hr>
             <section class="homeLeftSide">
                 <h4>BOOKSHELVES</h4>
                 <div class="userShelvesBookCounts">
@@ -62,9 +59,8 @@
                 </div>
             </section>
         </div>
-        <!-- class="col-lg-8" -->
         <div class="col-md-8" ng-controller="bookController">
-            <div class="panel panel">
+            <div class="panel scrollStyle">
                 <div id="design-cast">
                     <h4>
                         <strong id="list"> Random List:</strong>
@@ -74,10 +70,11 @@
                             <div ng-show="(books | filter:text).length == 0">No results</div>
                             <div class="rowImage" ng-repeat="book in books | filter: text">
                                 <div class="col-md-2 imagePosition">
-                                    <a class="member" href="details/{{book._id}}">
-                                        <img class="randomImages img-thumbnail" ng-src="{{book.img_url}}" alt="Responsive image" />
-                                        <!-- <div class="name">{{book.title}}</div> -->
-                                    </a>
+                                    <figure>
+                                        <a class="member" href="details/{{book._id}}">
+                                            <img class="randomImages img-thumbnail" ng-src="{{book.img_url}}" alt="Responsive image" />
+                                        </a>
+                                    </figure>
                                 </div>
                             </div>
                         </div>
