@@ -26,10 +26,10 @@ angular.module('authServices', [])
         authFactory.getUser = function(){
             if(AuthToken.getToken()){
                 return $http.post('/api/currentUser');
-            }else{
+            }
                 // $q.reject({message:'User has not token'});
                 // alert('You must loggin first!');
-            }
+            
         };
         // Auth.logout()
         authFactory.logout = function(){

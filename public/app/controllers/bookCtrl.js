@@ -35,7 +35,7 @@ app.controller("bookController", ["Auth", "$scope", "$http", "$location", "$rout
                         if (usersIdMas.find(x => x == currentUserObject.id) == undefined) {
                             usersIdMas.push(currentUserObject.id);
                         } else {
-                            alert('You have already rated this book!');
+                            throw new Error('You have already rate this book!');
                         }
                         var newBook = {
                             title: $scope.book.title,

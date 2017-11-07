@@ -4,10 +4,16 @@ app.controller("toReadBookController", ["Auth", "$scope", "$http", "$location", 
     $scope.getToReadBooks = function () {
         $http.get("/toreadbooks").then(function (response) {
             $scope.toReadBooks = response.data;
-            if (response.data.length == 0) {
-                $scope.length = 0;
-            } else {
-                $scope.length = response.data.length
+            if (Auth.isLoggedIn()) {
+                Auth.getUser().then(function (response) {
+                    var currentUserObject = response.data;
+                    $scope.toReadBooks = $scope.toReadBooks.filter(x => x.author.id == currentUserObject.id)
+                    if ($scope.toReadBooks.length == 0) {
+                        $scope.length = 0;
+                    } else {
+                        $scope.length = $scope.toReadBooks.length;
+                    }
+                })
             }
         })
     }
@@ -32,7 +38,7 @@ app.controller("toReadBookController", ["Auth", "$scope", "$http", "$location", 
                     $http.get("/toreadbooks").then(function (response) {
                         var someToReadBook = response.data.some(x => (x.book._id == id) && (x.author.id == currentUserObject.id))
                         if (someToReadBook) {
-                            alert('This book is already in your books to be read colletion!'); 
+                            alert('This book is already in your books to be read colletion!');
                         } else {
                             var newToReadBook = {
                                 author: currentUserObject,

@@ -1,5 +1,5 @@
 var app = angular.module('appRoutes', ['ngRoute'])
-    .config(function($routeProvider, $locationProvider) {
+    .config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'app/views/pages/home.html',
@@ -62,7 +62,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
                 authenticated: false
             })
 
-        .when('/profile', {
+            .when('/profile', {
                 templateUrl: 'app/views/pages/users/profile.html',
                 authenticated: true,
             })
@@ -79,7 +79,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
                 authenticated: false
             })
 
-        .otherwise({ redirectTo: '/' });
+            .otherwise({ redirectTo: '/' });
 
         $locationProvider.html5Mode({ /// za mahane na #
             enabled: true,
@@ -87,8 +87,8 @@ var app = angular.module('appRoutes', ['ngRoute'])
         })
     })
 
-app.run(['$rootScope', 'Auth', '$location', function($rootScope, Auth, $location) {
-    $rootScope.$on('$routeChangeStart', function(event, next, current) {
+app.run(['$rootScope', 'Auth', '$location', function ($rootScope, Auth, $location) {
+    $rootScope.$on('$routeChangeStart', function (event, next, current) {
         // console.log(next.$$route.authenticated); //current route 
         if (next.$$route.authenticated == true) {
             if (!Auth.isLoggedIn()) {

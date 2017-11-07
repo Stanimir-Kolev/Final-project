@@ -4,12 +4,19 @@ app.controller("readBookController", ["Auth", "$scope", "$http", "$location", "$
     $scope.getReadBooks = function () {
         $http.get("/readbooks").then(function (response) {
             $scope.readBooks = response.data;
-            if (response.data.length == 0) {
-                $scope.length = 0;
-            } else {
-                $scope.length = response.data.length
+            if (Auth.isLoggedIn()) {
+                Auth.getUser().then(function (response) {
+                    var currentUserObject = response.data;
+                    $scope.readBooks = $scope.readBooks.filter(x => x.author.id == currentUserObject.id)
+                    if ($scope.readBooks.length == 0) {
+                        $scope.length = 0;
+                    } else {
+                        $scope.length = $scope.readBooks.length;
+                    }
+                })
             }
         })
+
     }
     //show current User All readbooks
     $scope.getReadBooksCurrentUser = function () {
@@ -44,7 +51,7 @@ app.controller("readBookController", ["Auth", "$scope", "$http", "$location", "$
                     })
                 })
             })
-        }else{
+        } else {
             $location.path('/login');
         }
     }

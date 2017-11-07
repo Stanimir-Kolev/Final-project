@@ -41,27 +41,22 @@ app.controller("comentController", ["Auth", "$scope", "$http", "$location", "$ro
                     this.bookId = bookId;
 
                     function validString(input) {
-                        console.log(input);
-                        if (input.length > 0) {
+                        if (input.length > 0)
                             return !(/[\\/&;]/.test(input));
-                        } else {
-                            alert('You must write something first!');
-                        }
+                        else throw new Error("Must write first");
                     }
                     if (validString(text))
                         this.text = text;
 
-                    this.date = new Date().toLocaleString();
+                    this.date = new Date().toLocaleString("en-GB");
                     this.rating = null
                 }
-                
                 $scope.coment = new Coment(userObject, currentBookId, textFromInput);
                 $http.post("/coments", $scope.coment).then(function (response) {
                     $scope.getComents();
-                    // $scope.coments.push($scope.coment);
                 })
             })
-        } else {
+        }else{
             $location.path('/login');
         }
         setTimeout(function () {
@@ -81,6 +76,7 @@ app.controller("comentController", ["Auth", "$scope", "$http", "$location", "$ro
             $scope.coment.likes++;
             $http.put("/coments/" + id, $scope.coment).then(function (response) {
                 $scope.getComents();
+                // $scope.coments.push($scope.coment);
             })
         })
     }

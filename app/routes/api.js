@@ -70,9 +70,9 @@ module.exports = function(router) {
                 throw err;
             }
             if (user) {
-                res.json({ success: false, message: 'That e-mail is already taken' })
+                res.json({ success: false, message: 'That e-mail is already taken' });
             } else {
-                res.json({ success: true, message: 'Valid e-mail' })
+                res.json({ success: true, message: 'Valid e-mail' });
             }
         });
     });
