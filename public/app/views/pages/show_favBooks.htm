@@ -51,7 +51,7 @@
                                     <span class="summary">{{favBook.book.pages}}</span>
                                 </td>
                                 <td class="col-md-2">
-                                    <span class="summary">{{favBook.book.create_date}}</span>
+                                    <span class="summary">{{favBook.book.create_date | date : format : timezone}}</span>
                                 </td>
                                 <td class="col-md-2">
                                     <span class="btn btn-danger glyphicon glyphicon-remove" ng-click="deleteFavBook(favBook._id)"></span>

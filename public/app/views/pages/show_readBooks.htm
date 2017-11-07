@@ -46,7 +46,7 @@
                                     <span class="summary">{{readBook.book.pages}}</span>
                                 </td>
                                 <td class="col-md-2">
-                                    <span class="summary">{{readBook.book.create_date}}</span>
+                                    <span class="summary">{{readBook.book.create_date | date : format : timezone}}</span>
                                 </td>
                                 <td class="col-md-2">
                                     <span class="btn btn-danger glyphicon glyphicon-remove" ng-click="deleteReadBook(readBook._id)"></span>

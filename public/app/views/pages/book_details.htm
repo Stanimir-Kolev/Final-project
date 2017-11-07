@@ -77,7 +77,7 @@
                                                 <strong>{{coment.author.username}}</strong>
                                             </p>
                                             <p class="">{{coment.text}}</p>
-                                            <span class="date sub-text">on {{coment.date}}</span>
+                                            <span class="date sub-text">on {{coment.date | date : format : timezone}}</span>
                                             <span class="btn btn-primary glyphicon glyphicon-thumbs-up" ng-click="editComent(coment._id)">&nbsp{{coment.likes}}</span>
                                         </div>
                                     </li>

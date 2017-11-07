@@ -18,7 +18,7 @@ app.controller("bookController", ["Auth", "$scope", "$http", "$location", "$rout
 
 
             if (masWithStats.length != 0) {
-                $scope.oldRating = masWithStats.reduce((a, b) => a + b) / masWithStats.length;
+                $scope.oldRating = (masWithStats.reduce((a, b) => a + b) / masWithStats.length).toFixed(1);
             } else {
                 $scope.oldRating = 1;
             }
@@ -47,6 +47,7 @@ app.controller("bookController", ["Auth", "$scope", "$http", "$location", "$rout
                             img_url: $scope.book.img_url,
                             buy_url: $scope.book.buy_url,
                             comments: $scope.book.comments,
+                            date: new Date().toLocaleString(),
                             rating: {
                                 userId: usersIdMas,
                                 ratingStat: masWithStats
