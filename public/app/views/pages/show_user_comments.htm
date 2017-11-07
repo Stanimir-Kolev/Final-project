@@ -21,15 +21,15 @@
             </div>
             <div class="col-md-8">
 
-                <div class="container" ng-init="getComentFromCurrentUser()">
-                    <div class="col-md-8">
+                <div ng-init="getComentFromCurrentUser()">
+                    <div>
                         <div class="titleBox">
                             <label>
                                 <strong>My Comments:</strong>
                             </label>
                         </div>
                         <div class="actionBox">
-                            <ul class="commentList">
+                            <ul class="commentList scrollStyle">
                                 <li ng-repeat="coment in coments | filter">
                                     <div class="commenterImage">
                                         <img ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Circle-icons-profle.svg/120px-Circle-icons-profle.svg.png" />
@@ -40,7 +40,7 @@
                                         </p>
                                         <p class="">{{coment.text}}</p>
                                         <span class="date sub-text">on {{coment.date}}</span>
-                                        <button class="btn btn-default" ng-click="deleteComent(coment._id)">delete
+                                        <button class="btn btn-danger" ng-click="deleteComent(coment._id)">delete
                                             <span class="glyphicon glyphicon-trash Try it"></span>
                                         </button>
                                     </div>

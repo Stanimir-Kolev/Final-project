@@ -41,11 +41,11 @@
                             </div>
                         </div>
                         <!-- track by $index -->
-                        <div>
+                        <div class="row">
                             <div class="input-group add-on" ng-show="text.length > 0">books matching
                                 <strong>"{{text}}"</strong>
                             </div>
-                            <ul class="row dropdown-item list-group scroller">
+                            <ul class="dropdown-item list-group scrollStyle">
                                 <!-- cont-from-search result-box-frs list-group-item -->
                                 <li ng-repeat="book in books | filter: text" ng-show="text.length > 0" class="cont-from-search">
                                     <div class="col-md-1">

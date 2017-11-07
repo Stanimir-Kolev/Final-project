@@ -15,19 +15,13 @@ app.controller("comentController", ["Auth", "$scope", "$http", "$location", "$ro
 
     //show current User All comments
     $scope.getComentFromCurrentUser = function() {
-            Auth.getUser().then(function(response) {
-                var currentUserObject = response.data;
-                $http.get("/coments").then(function(response) {
-                    $scope.coments = response.data.filter(x => x.author.id == currentUserObject.id)
-                })
+        Auth.getUser().then(function(response) {
+            var currentUserObject = response.data;
+            $http.get("/coments").then(function(response) {
+                $scope.coments = response.data.filter(x => x.author.id == currentUserObject.id)
             })
-        }
-        // $scope.getComent = function() {
-        //     var id = $routeParams.id;
-        //     $http.get("/coments/" + id).then(function(response) {
-        //         $scope.coment = response.data;
-        //     })
-        // }
+        })
+    }
     $scope.addComent = function() {
         var currentBookId = $routeParams.id;
         var textFromInput = document.querySelector("#comentar").value;
@@ -38,9 +32,9 @@ app.controller("comentController", ["Auth", "$scope", "$http", "$location", "$ro
                 this.author = author;
                 this.bookId = bookId;
 
-                function validString(input) {
-                    if (input.length > 0)
-                        return !(/[\\/&;]/.test(input));
+                function validString(text) {
+                    if (text.length > 0)
+                        return !(/[\\/&;]/.test(text));
                     else throw new Error("Must write first");
                 }
                 if (validString(text))
@@ -65,7 +59,6 @@ app.controller("comentController", ["Auth", "$scope", "$http", "$location", "$ro
         }
         // za like-ovete
     $scope.editComent = function(id) {
-        // proverka dali e minala uspeshno zaqvkata ako da da ne pravi poveche put zaqvki
         $http.get("/coments/" + id).then(function(response) {
             $scope.coment = response.data;
             $scope.coment.likes++;

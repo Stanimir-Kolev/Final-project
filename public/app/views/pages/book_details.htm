@@ -1,18 +1,15 @@
 <div class="container" ng-controller='comentController'>
-
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-
     <div class="col-sm-8 bookDetailsButton">
-        <a href="/MyBooks"> <button id="bookDetailsButton" type="button" class="btn btn-primary">Go Back</button></a>
+        <a href="/MyBooks" class="btn btn-primary"> Go Back</a>
     </div>
-    <div class="panel panel-default" ng-init="getBook()">
+    <div class="panel" ng-init="getBook()">
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-4">
                     <img src="{{book.img_url}}" alt="" class="thumbnail">
                     <div class="stars">
                         <div id="stats">
-                            <span>{{oldRating}}</span>
+                            <p>Rating: {{oldRating}}</p>
                         </div>
                         <form action="">
                             <input class="star star-5" id="star-5" type="radio" ng-click="addUserRating(5)" />
@@ -29,7 +26,7 @@
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <ul class="list-group list-group-item">
+                    <ul class="list-group list-group-item favbooktable">
                         <li class="list-group-item"><strong>Title: </strong>{{book.title}}</li>
                         <li class="list-group-item"><strong>Author: </strong>{{book.author}}</li>
                         <li class="list-group-item"><strong>Genre: </strong>{{book.genre}}</li>
@@ -44,7 +41,7 @@
                             <button class="btn btn-danger" ng-controller='toReadBookController' ng-click="addToReadBook()"><span class="glyphicon glyphicon-tag"></span> To read</button>
                             <a class="btn btn-primary" href="{{book.buy_url}}"><span class="glyphicon glyphicon-usd"></span> Amazon</a>
                         </li>
-                        <li class="list-group-item" ng-init="getComents()">
+                        <li class="list-group-item scrollStyle" ng-init="getComents()">
                             <div class="titleBox">
                                 <label><strong>Comment Box</strong></label>
                             </div>

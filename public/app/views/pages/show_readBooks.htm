@@ -14,11 +14,11 @@
                     <a href="/MyBooks/toreadbooks" class="list-group-item">Books have been read</a>
                 </div>
                 <div class="col-sm-8">
-                    <a href="/MyBooks"><span class="glyphicon glyphicon-circle-arrow-left	Try it"></span> Go back</a>
+                    <a href="/MyBooks" class="btn btn-primary"><span class="glyphicon glyphicon-circle-arrow-left	Try it"></span> Go back</a>
                 </div>
             </div>
             <div class="col-md-8">
-                <div class="panel row">
+                <div class="panel row scrollStyle">
                     <h4>Favourites Books:</h4>
                     <table class="table table-filter" ng-init="getReadBooksCurrentUser()">
                         <thead>
@@ -49,7 +49,7 @@
                                     <span class="summary">{{readBook.book.create_date}}</span>
                                 </td>
                                 <td class="col-md-2">
-                                    <span class="btn btn-default glyphicon glyphicon-remove" ng-click="deleteReadBook(readBook._id)"></span>
+                                    <span class="btn btn-danger glyphicon glyphicon-remove" ng-click="deleteReadBook(readBook._id)"></span>
                                 </td>
                             </tr>
                         </tbody>
