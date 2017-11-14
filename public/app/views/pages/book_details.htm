@@ -69,8 +69,7 @@
                                 <ul class="commentList">
                                     <li ng-repeat="coment in coments | filter">
                                         <div class="commenterImage">
-                                            <img ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Circle-icons-profle.svg/120px-Circle-icons-profle.svg.png"
-                                            />
+                                            <img ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Circle-icons-profle.svg/120px-Circle-icons-profle.svg.png" />
                                         </div>
                                         <div class="commentText">
                                             <p>
@@ -78,7 +77,7 @@
                                             </p>
                                             <p class="">{{coment.text}}</p>
                                             <span class="date sub-text">on {{coment.date | date : format : timezone}}</span>
-                                            <span class="btn btn-primary glyphicon glyphicon-thumbs-up" ng-click="editComent(coment._id)">&nbsp{{coment.likes}}</span>
+                                            <span class="btn btn-primary glyphicon glyphicon-thumbs-up" ng-click="editComent(coment._id)">&nbsp{{coment.likes.like}}</span>
                                         </div>
                                     </li>
                                 </ul>

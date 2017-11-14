@@ -6,7 +6,7 @@ var comentSchema = mongoose.Schema({
     bookId: { type: String },
     text: { type: String },
     date: { type: Date, default: Date.now },
-    likes: { type: Number, default: 0 }
+    likes: { type: Object }
 });
 var Coment = module.exports = mongoose.model('Coment', comentSchema);
 // get Coment

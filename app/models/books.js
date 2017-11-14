@@ -1,6 +1,12 @@
 var mongoose = require('mongoose');
 
+
 // Schema for books
+function NewRating() {
+    this.ratingStat = [1];
+    this.userId = [0]
+}
+
 var bookSchema = mongoose.Schema({
     title: { type: String, required: true },
     author: { type: String, required: true },
@@ -12,7 +18,7 @@ var bookSchema = mongoose.Schema({
     buy_url: { type: String },
     comments: { type: Object },
     create_date: { type: Date, default: Date.now },
-    rating: { type: Object }
+    rating: { type: Object, default: new NewRating }
 });
 var Book = module.exports = mongoose.model('Book', bookSchema);
 // get Books
