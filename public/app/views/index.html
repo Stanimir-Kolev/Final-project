@@ -33,10 +33,12 @@
     <script src="app/controllers/readBookCtrl.js"></script>
     <script src="app/controllers/stillReadBookCtrl.js"></script>
     <script src="app/controllers/toReadBookCtrl.js"></script>
+    <script src="app/controllers/managementCtrl.js"></script>
 
     <!-- Angular Services -->
     <script src="app/services/userServices.js"></script>
     <script src="app/services/authServices.js"></script>
+    <script src="app/services/commentServices.js"></script>
 
     <title>BooksPile</title>
 </head>
@@ -75,6 +77,8 @@
                                                 <li><a href="#">One more separated link</a></li>
                                             </ul>
                                         </li>
+                                        <li><a ng-show="main.isLoggedIn && main.authorized" href="/management">User Management</a></li>
+                                        <li><a ng-show="main.isLoggedIn && main.authorized" href="/comments">Comments Management</a></li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
                                         <li><a href="/profile" ng-show="main.isLoggedIn">Hello {{main.username}}</a></li>

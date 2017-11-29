@@ -78,6 +78,20 @@ var app = angular.module('appRoutes', ['ngRoute'])
                 controllerAs: 'facebook',
                 authenticated: false
             })
+            .when('/management', {
+                templateUrl: 'app/views/pages/management/management.html',
+                controller: 'managementCtrl',
+                controllerAs: 'management',
+                authenticated: true,
+                permission: "admin"
+            })
+            .when('/comments',{
+                templateUrl:'app/views/pages/management/comments.html',
+                controller: 'commentsManagement',
+                controllerAs: 'UserComments',
+                authenticated: true,
+                permission: "admin"
+            })
 
             .otherwise({ redirectTo: '/' });
 
@@ -87,19 +101,30 @@ var app = angular.module('appRoutes', ['ngRoute'])
         })
     })
 
-app.run(['$rootScope', 'Auth', '$location', function ($rootScope, Auth, $location) {
-    $rootScope.$on('$routeChangeStart', function (event, next, current) {
-        // console.log(next.$$route.authenticated); //current route 
-        if (next.$$route.authenticated == true) {
-            if (!Auth.isLoggedIn()) {
-                event.preventDefault(); // kogato napishat naprimer http://localhost:8000/profile bez tova shte si otidat tam ... tova ne mu pozvolqva ako ne e lognat
-                $location.path('/login');
+    app.run(['$rootScope', 'Auth', '$location', 'User', function ($rootScope, Auth, $location, User) {
+        $rootScope.$on('$routeChangeStart', function (event, next, current) {
+            // console.log(next.$$route.authenticated); //current route 
+            if (next.$$route !== undefined) {
+    
+                if (next.$$route.authenticated === true) {
+                    if (!Auth.isLoggedIn()) {
+                        event.preventDefault(); // kogato napishat naprimer http://localhost:8000/profile bez tova shte si otidat tam ... tova ne mu pozvolqva ako ne e lognat
+                        $location.path('/login');
+                    } else if (next.$$route.permission) {
+    
+                        User.getPermisson().then(function (data) {
+                            if (next.$$route.permission !== data.data.permission) {
+                                    event.preventDefault();
+                                    $location.path('/');
+                            }
+                        });
+                    }
+                } else if (next.$$route.authenticated === false) {
+                    if (Auth.isLoggedIn()) {
+                        event.preventDefault();
+                        $location.path('/profile'); // kogat osi lognat ne mojesh da napishesh v url-a /register --> redirectva te v /profile
+                    }
+                }
             }
-        } else if (next.$$route.authenticated == false) {
-            if (Auth.isLoggedIn()) {
-                event.preventDefault();
-                $location.path('/profile'); // kogat osi lognat ne mojesh da napishesh v url-a /register --> redirectva te v /profile
-            }
-        }
-    });
-}]);
+        });
+    }]);

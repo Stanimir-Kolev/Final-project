@@ -1,0 +1,36 @@
+<div class="page-header">
+    <h1 class="loginRegistration">Comment Management</h1>
+</div>
+<br>
+
+<div class="jumbotron  text-center" ng-show="UserComments.loading">
+    <span class="glyphicon glyphicon-repeat spinner"></span>
+    <p>Loading...</p>
+</div>
+
+<br>
+
+<br>
+<br>
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <strong>Comment Management</strong>
+    </div>
+    <table class="table">
+        <tr>
+            <th>Username</th>
+            <th>Comment</th>
+            <th>Date</th>
+        </tr>
+        <tr ng-repeat="comments in UserComments.allComments">
+            <td>{{comments.author.username}}</td>
+            <td>{{comments.text}}</td>
+            <td>{{comments.date | date : format : timezone}}</td>
+            <td>
+                    <button type="button" ng-click="UserComments.deleteComment(comments._id);" class="btn btn-danger"> Delete Comment </button>
+            </td>
+        </tr>
+    </table>
+</div>
