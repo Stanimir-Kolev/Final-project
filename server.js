@@ -13,6 +13,7 @@ var path = require('path');
 var passport = require('passport');
 var social = require('./app/passport/passport')(app, passport);
 var Book = require('./app/models/books');
+var Review = require('./app/models/reviews');
 var favourite_Book = require('./app/models/favourites_books');
 var read_Book = require('./app/models/read_books');
 var still_read_Book = require('./app/models/still_read_books');
@@ -89,6 +90,47 @@ app.delete('/books/:_id', function(req, res) {
     });
 });
 
+// za reviews ///////////
+
+// get reviews
+app.get('/reviews', function(req, res) {
+    Review.getReviews(function(err, reviews) {
+        if (err) {
+            throw err;
+        }
+        res.json(reviews)
+    });
+});
+// get review
+app.get('/reviews/:_id', function(req, res) {
+    Review.getReviewById(req.params._id, function(err, review) {
+        if (err) {
+            throw err;
+        }
+        res.json(review)
+    });
+});
+// add review
+app.post('/reviews', function(req, res) {
+    var review = req.body;
+    Review.addReview(review, function(err, review) {
+        if (err) {
+            throw err;
+        }
+        res.json(review)
+    });
+});
+
+// delete review
+app.delete('/reviews/:_id', function(req, res) {
+    var id = req.params._id;
+    Review.deleteReview(id, function(err, review) {
+        if (err) {
+            throw err;
+        }
+        res.json(review)
+    });
+});
 
 // za comments ///////
 

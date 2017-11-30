@@ -1,5 +1,5 @@
 var app = angular.module('appRoutes', ['ngRoute'])
-    .config(function ($routeProvider, $locationProvider) {
+    .config(function($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'app/views/pages/home.html',
@@ -47,6 +47,11 @@ var app = angular.module('appRoutes', ['ngRoute'])
                 controller: 'toReadBookController',
                 authenticated: true
             })
+            .when('/home/forum', {
+                templateUrl: 'app/views/pages/forum.htm',
+                controller: 'forumController',
+                authenticated: true
+            })
             .when('/register', {
                 templateUrl: 'app/views/pages/users/register.html',
                 controller: 'regCtrl',
@@ -62,7 +67,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
                 authenticated: false
             })
 
-            .when('/profile', {
+        .when('/profile', {
                 templateUrl: 'app/views/pages/users/profile.html',
                 authenticated: true,
             })
@@ -85,15 +90,15 @@ var app = angular.module('appRoutes', ['ngRoute'])
                 authenticated: true,
                 permission: "admin"
             })
-            .when('/comments',{
-                templateUrl:'app/views/pages/management/comments.html',
+            .when('/comments', {
+                templateUrl: 'app/views/pages/management/comments.html',
                 controller: 'commentsManagement',
                 controllerAs: 'UserComments',
                 authenticated: true,
                 permission: "admin"
             })
 
-            .otherwise({ redirectTo: '/' });
+        .otherwise({ redirectTo: '/' });
 
         $locationProvider.html5Mode({ /// za mahane na #
             enabled: true,
@@ -101,30 +106,30 @@ var app = angular.module('appRoutes', ['ngRoute'])
         })
     })
 
-    app.run(['$rootScope', 'Auth', '$location', 'User', function ($rootScope, Auth, $location, User) {
-        $rootScope.$on('$routeChangeStart', function (event, next, current) {
-            // console.log(next.$$route.authenticated); //current route 
-            if (next.$$route !== undefined) {
-    
-                if (next.$$route.authenticated === true) {
-                    if (!Auth.isLoggedIn()) {
-                        event.preventDefault(); // kogato napishat naprimer http://localhost:8000/profile bez tova shte si otidat tam ... tova ne mu pozvolqva ako ne e lognat
-                        $location.path('/login');
-                    } else if (next.$$route.permission) {
-    
-                        User.getPermisson().then(function (data) {
-                            if (next.$$route.permission !== data.data.permission) {
-                                    event.preventDefault();
-                                    $location.path('/');
-                            }
-                        });
-                    }
-                } else if (next.$$route.authenticated === false) {
-                    if (Auth.isLoggedIn()) {
-                        event.preventDefault();
-                        $location.path('/profile'); // kogat osi lognat ne mojesh da napishesh v url-a /register --> redirectva te v /profile
-                    }
+app.run(['$rootScope', 'Auth', '$location', 'User', function($rootScope, Auth, $location, User) {
+    $rootScope.$on('$routeChangeStart', function(event, next, current) {
+        // console.log(next.$$route.authenticated); //current route 
+        if (next.$$route !== undefined) {
+
+            if (next.$$route.authenticated === true) {
+                if (!Auth.isLoggedIn()) {
+                    event.preventDefault(); // kogato napishat naprimer http://localhost:8000/profile bez tova shte si otidat tam ... tova ne mu pozvolqva ako ne e lognat
+                    $location.path('/login');
+                } else if (next.$$route.permission) {
+
+                    User.getPermisson().then(function(data) {
+                        if (next.$$route.permission !== data.data.permission) {
+                            event.preventDefault();
+                            $location.path('/');
+                        }
+                    });
+                }
+            } else if (next.$$route.authenticated === false) {
+                if (Auth.isLoggedIn()) {
+                    event.preventDefault();
+                    $location.path('/profile'); // kogat osi lognat ne mojesh da napishesh v url-a /register --> redirectva te v /profile
                 }
             }
-        });
-    }]);
+        }
+    });
+}]);
