@@ -90,7 +90,7 @@ section.homeLeftSide>div>div>img {
 }
 
 .scrollStyle {
-    max-height: 600px;
+    max-height: 800px;
     overflow-y: scroll;
 }
 
@@ -109,10 +109,14 @@ section.homeLeftSide>div>div>img {
     padding: 2%;
 }
 
+span.hideEl {
+    visibility: hidden;
+}
 
-/* .form-group>img {
-    float: left;
-} */
+span.showEl {
+    color: green;
+    visibility: show;
+}
 
 .gr-mediaBox {
     width: 60%;
@@ -468,10 +472,12 @@ a:hover {
     text-decoration: none;
 }
 
-.favoritePile{
+.favoritePile {
     text-align: center;
     padding: 2% 0;
 }
+
+
 /* pic in home page */
 
 .hero {
@@ -501,7 +507,39 @@ figure:hover img {
     transform: scale3d(1.1, 1.1, 1);
 }
 
+.loginRegistration {
+    color: darkgray;
+}
 
-.loginRegistration{
-    color:darkgray;
+
+/* css for reviews */
+
+#reviewList {
+    list-style-type: none;
+    padding-left: 30px;
+}
+
+div.comment-avatar>img {
+    width: 70%;
+}
+
+div.comments-container {
+    border: 1px solid darkgoldenrod;
+    border-radius: 2px;
+    padding: 15px;
+}
+
+div.comments-container>h4 {
+    /* text-align: center; */
+}
+
+div.bookReview {
+    border: 1px solid darkgoldenrod;
+    border-radius: 2px;
+    padding: 15px;
+    margin: 10px 0 10px 0;
+}
+
+div.bookReview>a {
+    float: left;
 }

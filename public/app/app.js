@@ -1,8 +1,8 @@
 // vsichki angular files shte importvame vsichki controlleri i tn v tozi fail
 // main config file
-angular.module('userApp', ['appRoutes', 'userControllers', 'userServices', 'ngAnimate', 'mainController', 'authServices', 'homeController', 'detailsController', 'favCollectionBook', 'readCollectionBook', 'stillreadCollectionBook', 'toreadCollectionBook', 'managementController', 'commentServices']) /// taka se pravi application v angular .. [] - tova da dependansitata koito iskame da izpolzvame routes,animation i tn
+angular.module('userApp', ['appRoutes', 'userControllers', 'userServices', 'ngAnimate', 'mainController', 'authServices', 'homeController', 'detailsController', 'favCollectionBook', 'readCollectionBook', 'stillreadCollectionBook', 'toreadCollectionBook', 'managementController', 'commentServices', 'forumCtrl']) /// taka se pravi application v angular .. [] - tova da dependansitata koito iskame da izpolzvame routes,animation i tn
 
-    // tova konfiguriura app da interseptva vsichki http requests s tozi factory koito asignva toketa kum headera
-    .config(function ($httpProvider) {
-        $httpProvider.interceptors.push('AuthInterceptors');
-    })
+// tova konfiguriura app da interseptva vsichki http requests s tozi factory koito asignva toketa kum headera
+.config(function($httpProvider) {
+    $httpProvider.interceptors.push('AuthInterceptors');
+})

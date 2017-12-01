@@ -1,4 +1,4 @@
-<div class="page-header" ng-init="getBooks()" ng-controller="bookController">
+<div class="page-header" ng-controller="forumController">
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
@@ -22,20 +22,20 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <div class="container">
+                <div>
                     <div class="col-md-8">
                         <div class="form-area">
-                            <form role="form" ng-submit="addBook()">
+                            <form role="form" ng-submit="addReview()">
                                 <br style="clear:both">
-                                <h3 style="margin-bottom: 25px; text-align: center;">Add your suggest for book</h3>
+                                <h3 style="margin-bottom: 25px; text-align: center;">Add your suggest for book review</h3>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="title" ng-model="newBook.title" placeholder="Title" required>
+                                    <input type="text" class="form-control" id="title" ng-model="newReview.title" placeholder="Title" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="author" ng-model="newBook.author" placeholder="Author" required>
+                                    <input type="text" class="form-control" id="author" ng-model="newReview.author" placeholder="Author" required>
                                 </div>
                                 <div class="form-group">
-                                    <select class="form-control" ng-model="newBook.genre" required>
+                                    <select class="form-control" ng-model="newReview.genre" required>
                                         <option value="" selected disabled>Choose genre</option>
                                         <option value="Satire">Satire</option>
                                         <option value="Drama">Drama</option>
@@ -48,21 +48,27 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="publisher" ng-model="newBook.publisher" placeholder="Publisher" required>
+                                    <input type="text" class="form-control" id="publisher" ng-model="newReview.publisher" placeholder="Publisher" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" class="form-control" id="pages" ng-model="newBook.pages" placeholder="Pages" required>
+                                    <input type="number" class="form-control" id="pages" ng-model="newReview.pages" placeholder="Pages" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="img_url" ng-model="newBook.img_url" placeholder="Add url - front page for book" required>
+                                    <input type="text" class="form-control" id="img_url" ng-model="newReview.img_url" placeholder="Add url - front page for book" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="buy_url" ng-model="newBook.buy_url" placeholder="Add url - for buy in Amazon" required>
+                                    <input type="text" class="form-control" id="buy_url" ng-model="newReview.buy_url" placeholder="Add url - for buy in Amazon" required>
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" type="textarea" id="message" ng-model="newBook.description" placeholder="Description for this book" maxlength="340" rows="7"></textarea>
+                                    <textarea class="form-control" type="textarea" id="message" ng-model="newReview.description" placeholder="Write description for this book..." maxlength="340" rows="7"></textarea>
                                 </div>
-                                <button type="submit" name="submit" class="btn btn-primary pull-right">Upload</button>
+                                <div class="form-group">
+                                    <textarea class="form-control" type="textarea" id="message" ng-model="newReview.review" placeholder="Write someting for this book..." maxlength="340" rows="7"></textarea>
+                                </div>
+                                <div>
+                                    <span id="messageForSuccess" class="hideEl">Successfully add review for this book!</span>
+                                    <button type="submit" name="submit" class="btn btn-primary pull-right">Upload your review</button>
+                                </div>
                             </form>
                         </div>
                     </div>

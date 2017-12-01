@@ -1,0 +1,149 @@
+<div class="container" ng-init="getReviews()">
+    <div class="row">
+        <div class="col-lg-3">
+            <section class="homeLeftSide">
+                <h4>CURRENTLY READING</h4>
+                <div class="read_box form-group">
+                    <div class="col-md-6">
+                        <img class="img-thumbnail" src="images/book_PNG2111.png" alt="books-pic">
+                    </div>
+                </div>
+                <div class="read_box form-group">
+                    <form class="navbar-form" role="search">
+                        <p>What are you reading?</p>
+                        <p>Searching books:</p>
+                        <div class="input-group add-on">
+                            <input class="form-control" placeholder="Title / Author / Genre" name="srch-term" id="srch-term" type="text" ng-model="text">
+                            <div class="input-group-btn">
+                                <a href="/search" class="btn btn-default">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- track by $index -->
+                    </form>
+                </div>
+            </section>
+            <section class="homeLeftSide">
+                <h4>READING CHALLENGE</h4>
+                <p>Challenge yourself to read more this year!</p>
+                <div class="read_box form-group">
+                    <div class="col-lg-4">
+                        <img class="img-thumbnail" src="images/booksPile.png" alt="books-pic">
+                    </div>
+                    <div class="gr-mediaBox">
+                        <p>I want to read</p>
+                        <input type="number" placeholder="12">
+                        <p>books in this year</p>
+                        <button type="submit" class="btn btn-success">Start challenge</button>
+                    </div>
+                </div>
+            </section>
+            <section class="homeLeftSide">
+                <h4>WANT TO READ</h4>
+                <div class="read_box form-group">
+                    <div class="col-md-6">
+                        <img class="img-thumbnail" src="images/book-pile.png" alt="books-pic">
+                    </div>
+                </div>
+                <a href="/MyBooks">View all books</a>
+            </section>
+            <section class="homeLeftSide">
+                <h4>BOOKSHELVES</h4>
+                <div class="userShelvesBookCounts">
+                    <a href="/MyBooks/reads" ng-controller='readBookController' ng-init="getReadBooks()"><span class="counter_books">{{length}}</span>&nbsp;Read</a>
+                    <br>
+                    <a href="/MyBooks/stillreadbooks" ng-controller='stillReadBookController' ng-init="getStillReadBooks()"><span class="counter_books">{{length}}</span>&nbsp;Currently Reading</a>
+                    <br>
+                    <a href="/MyBooks/toreadbooks" ng-controller='toReadBookController' ng-init="getToReadBooks()"><span class="counter_books">{{length}}</span>&nbsp;Want to Read</a>
+                </div>
+            </section>
+        </div>
+        <div class="col-md-9" ng-controller="forumController">
+            <div class="panel scrollStyle">
+                <div id="design-cast">
+                    <h4>
+                        <strong id="list"> Reviews from all users:</strong>
+                    </h4>
+                    <div class="panel-body">
+                        <div class="row">
+                            <ul ng-repeat="review in reviews" id="reviewList">
+                                <li>
+                                    <div class="row comments-container">
+                                        <h4><strong>{{review.user.username}}</strong> reviewed <strong>{{review.title}}</strong></h4>
+                                        <div class="comment-avatar col-md-2"><img src="http://pngimages.net/sites/default/files/user-png-image-15189.png" alt=""></div>
+                                        <div class="comment-box col-md-10">
+                                            <div class="comment-head">
+                                                <h6 class="comment-name by-author"><strong>{{review.user.username}}</strong> on {{review.create_date | date:'medium'}}</h6>
+                                                <div>Rating: {{review.rating.ratingStat[0]}}
+                                                    <!-- <form action="" class="formStars">
+                                                        <input class="star star-5" id="star-5" type="radio" ng-click="addUserRating(5)" />
+                                                        <label class="star star-5" for="star-5"></label>
+                                                        <input class="star star-4" id="star-4" type="radio" ng-click="addUserRating(4)" />
+                                                        <label class="star star-4" for="star-4"></label>
+                                                        <input class="star star-3" id="star-3" type="radio" ng-click="addUserRating(3)" />
+                                                        <label class="star star-3" for="star-3"></label>
+                                                        <input class="star star-2" id="star-2" type="radio" ng-click="addUserRating(2)" />
+                                                        <label class="star star-2" for="star-2"></label>
+                                                        <input class="star star-1" id="star-1" type="radio" ng-click="addUserRating(1)" />
+                                                        <label class="star star-1" for="star-1"></label>
+                                                    </form> -->
+                                                </div>
+                                            </div>
+                                            <div class="comment-content">
+                                                {{review.description}}
+                                            </div>
+                                        </div>
+                                        <div class="bookReview col-md-12">
+                                            <a class="member" href="details/{{book._id}}">
+                                                <img class="randomImages img-thumbnail" ng-src="{{book.img_url}}" alt="Responsive image" />
+                                            </a>
+                                            <div class="col-md-10">
+                                                <h5>{{review.title}}</h5>
+                                                <h6>by <strong>{{review.author}}</strong></h6>
+                                                <hr>
+                                                <p>{{review.description}}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <a href="#" class="btn btn-success">Like <i class="fa fa-heart"></i></a>
+                                                <a href="#" class="btn btn-success">Comment <i class="fa fa-reply"></i></a>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="commentReview col-md-12"> -->
+
+                                        <div class="actionBox col-md-12">
+                                            <ul class="commentList">
+                                                <li ng-repeat="coment in coments | filter">
+                                                    <div class="commenterImage">
+                                                        <img ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Circle-icons-profle.svg/120px-Circle-icons-profle.svg.png" />
+                                                    </div>
+                                                    <div class="commentText">
+                                                        <p>
+                                                            <strong>{{coment.author.username}}</strong>
+                                                        </p>
+                                                        <p class="">{{coment.text}}</p>
+                                                        <span class="date sub-text">on {{coment.date | date : format : timezone}}</span>
+                                                        <span class="btn btn-primary glyphicon glyphicon-thumbs-up" ng-click="editComent(coment._id)">&nbsp{{coment.likes.like}}</span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <form class="form-inline" role="form">
+                                                <div class="form-group">
+                                                    <input class="form-control" type="text" placeholder="Your comments" id="comentar" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="button" class="btn btn-primary" ng-click="addComent()">Add</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <!-- </div> -->
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
