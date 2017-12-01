@@ -92,6 +92,13 @@ var app = angular.module('appRoutes', ['ngRoute'])
                 authenticated: true,
                 permission: "admin"
             })
+            .when('/search',{
+                templateUrl: 'app/views/pages/management/search.html',
+                controller: 'managementCtrl',
+                controllerAs: 'management',
+                authenticated: true,
+                permission: 'admin'
+            })
 
             .otherwise({ redirectTo: '/' });
 

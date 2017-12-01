@@ -1,6 +1,6 @@
 angular.module('managementController', [])
 
-    .controller('managementCtrl', function (User) {
+    .controller('managementCtrl', function (User, $scope) {
         var self = this;
 
         self.loading = true;
@@ -8,6 +8,7 @@ angular.module('managementController', [])
         self.errorMsg = false;
         self.deleteAccess = false;
         self.limit = 5;
+        self.searchLimit = 0;
 
         function getUsers() {
             User.getUsers().then(function (data) {
@@ -48,6 +49,49 @@ angular.module('managementController', [])
                 }
             })
         }
+        self.search = function (searchKeyword, number) {
+            if (searchKeyword) {
+                if (searchKeyword.length > 0) {
+                    self.limit = 0;
+                    $scope.searchFilter = searchKeyword;
+                    self.limit = number;
+                } else {
+                    $scope.searchFilter = undefined;
+                    self.limit = 0;
+                }
+            } else {
+                $scope.searchFilter = undefined;
+                self.limit = 0;
+            }
+
+        };
+        self.clear = function () {
+            $scope.number = 'Clear';
+            self.limit = 0;
+            $scope.searchKeyword = undefined;
+            $scope.searchFilter = undefined;
+            self.showMoreError = false;
+        };
+
+        self.advancedSearch = function(searchByUsername, searchByEmail, searchByName){
+            if(searchByUsername || searchByEmail || searchByName){
+                $scope.advancedSearchFilter = {};
+                if(searchByUsername){
+                    $scope.advancedSearchFilter.username = searchByUsername;
+                } 
+                if(searchByEmail){
+                    $scope.advancedSearchFilter.email = searchByEmail;
+                }
+                if(searchByName){
+                    $scope.advancedSearchFilter.name = searchByName;
+                }
+                self.searchLimit = undefined;
+            }
+        };
+
+        self.sortOrder = function(order){
+            self.sort = order;
+        };
     })
 
     .controller('commentsManagement', function (Comments) {

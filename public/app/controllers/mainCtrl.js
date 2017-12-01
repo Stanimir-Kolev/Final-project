@@ -4,7 +4,6 @@ angular.module('mainController', ['authServices'])
         var self = this;
 
         self.loadme = false;
-        self.authorized = false;
 
         //vseki put kato ima razlichno view ... shte se izvika slednata funktciq
         $rootScope.$on('$routeChangeStart', function () {
@@ -22,6 +21,7 @@ angular.module('mainController', ['authServices'])
                             self.loadme = true;
                         } else {
                             self.loadme = true;
+                            self.authorized = false;
                         }
                     })
                 })
